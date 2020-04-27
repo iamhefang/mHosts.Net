@@ -1,0 +1,25 @@
+﻿{
+	"hosts": [
+		{
+			"id": 1,
+			"name": "名称",
+			"active": true,
+			"content": "",
+			"readOnly": false,
+			"url": "在线hosts的url",
+			"lastUpdateTime": "",
+			"enable": true
+		}
+	],
+	"tools":[
+		{
+			"name": "启动 Google Chrome 浏览器",
+			"cmd": "chrome",
+			"args": "",
+			"children": [
+
+			]
+		}
+	],
+	"lastCheckUpdateTime": ""
+}

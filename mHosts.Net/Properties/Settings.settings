@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="mHosts.Net.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="hosts" Type="System.Collections.Generic.List&lt;mHosts.Net.entities.Host&gt;" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="tools" Type="System.Collections.Generic.List&lt;mHosts.Net.entities.Tool&gt;" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="hostsPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Windows\System32\drivers\etc\hosts</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
