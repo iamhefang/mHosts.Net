@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.inputHostsUrl = new System.Windows.Forms.TextBox();
             this.btnSaveHosts = new System.Windows.Forms.Button();
+            this.chkAlwaysApply = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // radioLocalHosts
@@ -110,11 +111,22 @@
             this.btnSaveHosts.UseVisualStyleBackColor = true;
             this.btnSaveHosts.Click += new System.EventHandler(this.OnBtnSaveHostsClick);
             // 
+            // chkAlwaysApply
+            // 
+            this.chkAlwaysApply.AutoSize = true;
+            this.chkAlwaysApply.Location = new System.Drawing.Point(98, 199);
+            this.chkAlwaysApply.Name = "chkAlwaysApply";
+            this.chkAlwaysApply.Size = new System.Drawing.Size(91, 24);
+            this.chkAlwaysApply.TabIndex = 7;
+            this.chkAlwaysApply.Text = "总是生效";
+            this.chkAlwaysApply.UseVisualStyleBackColor = true;
+            // 
             // NewHostsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 264);
+            this.Controls.Add(this.chkAlwaysApply);
             this.Controls.Add(this.btnSaveHosts);
             this.Controls.Add(this.inputHostsUrl);
             this.Controls.Add(this.label2);
@@ -144,5 +156,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox inputHostsUrl;
         private System.Windows.Forms.Button btnSaveHosts;
+        private System.Windows.Forms.CheckBox chkAlwaysApply;
     }
 }

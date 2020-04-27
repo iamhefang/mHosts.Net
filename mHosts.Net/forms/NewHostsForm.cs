@@ -30,6 +30,7 @@ namespace mHosts.Net.forms
                 MessageBox.Show(@"请输入在线Hosts地址", @"保存失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             if (Settings.Default.hosts.FindIndex(item => item.Name == inputHostsName.Text) > -1)
             {
                 MessageBox.Show($@"Hosts名称'{inputHostsName.Text}'已存在", @"保存失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -46,7 +47,8 @@ namespace mHosts.Net.forms
                 Id = Guid.NewGuid().ToString(),
                 Name = inputHostsName.Text,
                 Url = radioOnlineHosts.Checked ? inputHostsUrl.Text : null,
-                LastUpdateTime = DateTime.Now
+                LastUpdateTime = DateTime.Now,
+                AlwaysApply = chkAlwaysApply.Checked
             };
             Settings.Default.hosts.Add(host);
             Settings.Default.Save();

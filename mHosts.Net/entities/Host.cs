@@ -1,24 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace mHosts.Net.entities
 {
-    internal class Host:ISerializable
+    [Serializable]
+    internal class Host
     {
-        public string Id;
-        public string Name;
-        public bool ReadOnly = false;
-        public bool AlwaysApply = false;
-        public string Url;
-        public DateTime LastUpdateTime;
-        public bool Active = false;
-        public string Content;
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        [XmlAttribute] public string Id { get; set; }
+
+        [XmlAttribute]
+        public string Name { get; set; }
+        [XmlAttribute]
+        public bool ReadOnly { get; set; } = false;
+        [XmlAttribute]
+        public bool AlwaysApply { get; set; } = false;
+        [XmlAttribute]
+        public string Url { get; set; }
+        [XmlAttribute]
+        public DateTime LastUpdateTime { get; set; }
+        [XmlAttribute]
+        public bool Active { get; set; } = false;
+        [XmlAttribute]
+        public string Content { get; set; }
+
+        public Host()
         {
-            throw new NotImplementedException();
+
         }
+
     }
 }

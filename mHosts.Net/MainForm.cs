@@ -3,6 +3,7 @@ using mHosts.Net.Properties;
 using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -10,17 +11,90 @@ namespace mHosts.Net
 {
     public partial class MainForm : Form
     {
-        private readonly AssemblyName _assemblyName;
+        private readonly AssemblyName _assemblyName = Assembly.GetExecutingAssembly().GetName();
         public MainForm()
         {
             InitializeComponent();
             Program.InitSettings();
-            _assemblyName = Assembly.GetExecutingAssembly().GetName();
+            InitTrayMenu(trayIconMenu);
+            InitToolMenu();
             Text = $@"{_assemblyName.Name} - v{_assemblyName.Version}";
-            toolMenu.DropDownItems.AddRange(Helpers.MakeToolMenu());
             RefreshHosts();
         }
 
+        private void InitToolMenu()
+        {
+            toolMenu.DropDownItems.Clear();
+
+            var refreshDns = new ToolStripMenuItem(@"刷新DNS缓存");
+            refreshDns.Click += OnMenuRefreshDNSClick;
+
+            toolMenu.DropDownItems.Add(refreshDns);
+            toolMenu.DropDownItems.AddRange(Helpers.MakeToolMenu(Settings.Default.tools.ToArray()));
+        }
+
+        private void InitTrayMenu(ToolStrip menu)
+        {
+            menu.Items.Clear();
+            menu.Items.Add(new ToolStripMenuItem
+            {
+                Text = $@"{_assemblyName.Name} v{_assemblyName.Version}",
+                Enabled = false
+
+            });
+
+            var toggle = new ToolStripMenuItem(@"显示/隐藏主窗口");
+            toggle.Click += OnToggleMenuItemClick;
+
+            var newHosts = new ToolStripMenuItem(@"新建Hosts");
+            newHosts.Click += OnMenuItemNewHostsClick;
+
+            var refreshDns = new ToolStripMenuItem(@"刷新DNS缓存");
+            refreshDns.Click += OnMenuRefreshDNSClick;
+
+            var about = new ToolStripMenuItem(@"关于");
+            about.Click += OnAboutMenuItemClick;
+
+            var exit = new ToolStripMenuItem(@"退出");
+            exit.Click += OnExitMenuItemClick;
+
+            menu.Items.AddRange(new ToolStripItem[]
+            {
+                toggle,
+                new ToolStripSeparator()
+            });
+            menu.Items.AddRange(MakeHostMenu());
+            menu.Items.AddRange(new ToolStripItem[]
+            {
+                newHosts,
+                new ToolStripSeparator(),
+                refreshDns
+            });
+            menu.Items.AddRange(Helpers.MakeToolMenu(Settings.Default.tools.ToArray()));
+            menu.Items.AddRange(new ToolStripItem[]
+            {
+                new ToolStripSeparator(),
+                about,
+                exit
+            });
+        }
+        private static ToolStripItem[] MakeHostMenu()
+        {
+            var items = new ToolStripItem[Settings.Default.hosts.Count];
+            for (var i = 0; i < items.Length; i++)
+            {
+                var host = Settings.Default.hosts[i];
+                var item = new ToolStripMenuItem
+                {
+                    Text = host.Name,
+                    Checked = host.AlwaysApply || host.Active,
+                    Enabled = !host.AlwaysApply
+                };
+                items[i] = item;
+            }
+
+            return items;
+        }
         private void ToggleVisible()
         {
             Visible = !Visible;
@@ -70,7 +144,7 @@ namespace mHosts.Net
             Environment.Exit(0);
         }
 
-        private void OnTrayMenuRefreshClick(object sender, EventArgs e)
+        private void OnMenuRefreshDNSClick(object sender, EventArgs e)
         {
             try
             {
@@ -120,17 +194,11 @@ namespace mHosts.Net
 
         private void OnCodeChanged(object sender, EventArgs e)
         {
+
             Helpers.SetRichTextHighlight(codeEditor);
-        }
-
-        private void OnHostDoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void OnLaunchBrowser(object sender, EventArgs e)
-        {
-            Helpers.LaunchChrome();
+            if (hostsTree.SelectedNode == null || hostsTree.SelectedNode.Index == 0) return;
+            var host = Settings.Default.hosts[hostsTree.SelectedNode.Index - 1];
+            host.Content = codeEditor.Text;
         }
 
         private void OnMenuItemConfigClick(object sender, EventArgs e)
@@ -160,7 +228,56 @@ namespace mHosts.Net
             {
                 hostsTree.Nodes.Add(host.Id, host.Name);
             }
-            statusTextHostsCount.Text = $@"当前共有{Settings.Default.hosts.Count}个规则";
+            statusLabelHostsCount.Text = $@"当前共有{Settings.Default.hosts.Count}个规则";
+        }
+
+        private void OnHostDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            var host = Settings.Default.hosts[e.Node.Index - 1];
+            try
+            {
+                File.WriteAllText(Settings.Default.hostsPath, host.Content);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(@"请以管理员身份重新打开本软件", @"权限不足", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void OnCodeEditorKeyUp(object sender, KeyEventArgs e)
+        {
+            if (!e.Control || e.KeyCode != Keys.OemQuestion) return;
+            if (codeEditor.ReadOnly) return;
+            var start = codeEditor.SelectionStart;
+            var length = codeEditor.SelectionLength;
+            var lineStart = codeEditor.GetLineFromCharIndex(start);
+            var lineEnd = codeEditor.GetLineFromCharIndex(start + codeEditor.SelectionLength - 1);
+            var lines = codeEditor.Lines;
+
+            var comment = false;
+            for (var i = lineStart; i <= lineEnd; i++)
+            {
+                if (lines[i].StartsWith("#")) continue;
+                comment = true;
+                break;
+            }
+
+            for (var i = lineStart; i <= lineEnd; i++)
+            {
+                var line = lines[i];
+                if (comment)
+                {
+                    lines[i] = "#" + line;
+                    length += 1;
+                }
+                else if (line.StartsWith("#"))
+                {
+                    lines[i] = line.Substring(1);
+                    length -= 1;
+                }
+            }
+            codeEditor.Lines = lines;
+            codeEditor.Select(start, length);
         }
     }
 }

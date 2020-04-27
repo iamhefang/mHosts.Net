@@ -1,24 +1,41 @@
-﻿using System;
+﻿using mHosts.Net.entities;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using mHosts.Net.Properties;
 
 namespace mHosts.Net
 {
     class Helpers
     {
-        public static ToolStripItem[] MakeToolMenu()
+
+        public static ToolStripItem[] MakeToolMenu(Tool[] tools)
         {
-            var menus = new ToolStripItem[Settings.Default.tools.Count];
-            for (var i = 0; i < Settings.Default.tools.Count; i++)
+            var menus = new ToolStripMenuItem[tools.Length];
+            for (var i = 0; i < tools.Length; i++)
             {
-                var tool = Settings.Default.tools[i];
-                menus[i] = new ToolStripMenuItem(tool.Name);
+                var tool = tools[i];
+                var menu = new ToolStripMenuItem(tool.Name);
+                if (tool.Children.Length > 0)
+                {
+                    menu.DropDownItems.AddRange(MakeToolMenu(tool.Children));
+                }
+
+                if (!string.IsNullOrWhiteSpace(tool.Cmd))
+                {
+                    menu.Click += (sender, e) =>
+                    {
+                        var args = (tool.Args ?? "").Replace("!!GUID!!", Guid.NewGuid().ToString());
+                        Process.Start(tool.Cmd, args)?.Close();
+                    };
+                }
+
+                menus[i] = menu;
             }
             return menus;
         }
+
         public static void SetRichTextHighlight(RichTextBox editor)
         {
             if (editor.TextLength < 1)
@@ -48,32 +65,6 @@ namespace mHosts.Net
             }
 
             editor.Select(lastSelectionStart, 0);
-        }
-
-        public static bool LaunchChrome()
-        {
-            return LaunchChrome("");
-        }
-
-        public static bool LaunchChrome(string args)
-        {
-            return LaunchChrome(args, "chrome");
-        }
-
-        public static bool LaunchChrome(string args, string cmd)
-        {
-            var info = new ProcessStartInfo(cmd, args)
-            {
-                RedirectStandardError = true,
-                RedirectStandardOutput = true,
-                UseShellExecute = false
-            };
-            var res = Process.Start(info);
-            if (res == null) return false;
-            using (res.StandardError)
-            {
-                return res.StandardError.ReadToEnd().Length == 0;
-            }
         }
 
         public static string ReadText(string path)

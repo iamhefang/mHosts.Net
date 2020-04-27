@@ -1,17 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace mHosts.Net.entities
 {
+    [Serializable]
     class Tool
     {
-        public string Id;
-        public string Name;
-        public string Cmd;
-        public string Args;
-        public Tool[] Children;
+        [XmlAttribute]
+        public string Id { get; set; }
+
+        [XmlAttribute]
+        public string Name { get; set; }
+
+        [XmlAttribute]
+        public string Cmd { get; set; }
+
+        [XmlAttribute]
+        public string Args { get; set; }
+
+        public Tool[] Children { get; set; } = new Tool[0];
     }
 }

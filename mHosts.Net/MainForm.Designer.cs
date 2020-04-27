@@ -30,46 +30,36 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+            System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.statusTextHostsCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabelHostsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.新建NToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导入IToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.退出EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.首选项ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemDoc = new System.Windows.Forms.ToolStripMenuItem();
-            this.检查更新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemCheckUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.hostsTree = new System.Windows.Forms.TreeView();
             this.codeEditor = new System.Windows.Forms.RichTextBox();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.trayIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.trayMenuToggleMainForm = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.trayMenuNewHosts = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.trayMenuChrome = new System.Windows.Forms.ToolStripMenuItem();
-            this.googleChromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.microsoftEdgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trayMenuRefreshDNS = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.trayMenuAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.trayMenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.processRefreshDNS = new System.Diagnostics.Process();
-            this.toolMenu = new System.Windows.Forms.ToolStripMenuItem();
             toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusBar.SuspendLayout();
             this.menuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.trayIconMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripStatusLabel1
@@ -81,22 +71,31 @@
             toolStripStatusLabel1.Size = new System.Drawing.Size(223, 24);
             toolStripStatusLabel1.Text = "编辑自动保存，双击应用到系统";
             // 
+            // toolStripStatusLabel3
+            // 
+            toolStripStatusLabel3.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+            toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            toolStripStatusLabel3.Size = new System.Drawing.Size(313, 24);
+            toolStripStatusLabel3.Text = "内容修复自动保存，双击左侧节点应用到系统";
+            // 
             // statusBar
             // 
             this.statusBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusBar.Location = new System.Drawing.Point(0, 578);
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabelHostsCount,
+            toolStripStatusLabel3});
+            this.statusBar.Location = new System.Drawing.Point(0, 570);
             this.statusBar.Name = "statusBar";
             this.statusBar.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusBar.Size = new System.Drawing.Size(900, 22);
+            this.statusBar.Size = new System.Drawing.Size(900, 30);
             this.statusBar.TabIndex = 0;
             // 
-            // statusTextHostsCount
+            // statusLabelHostsCount
             // 
-            this.statusTextHostsCount.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.statusTextHostsCount.Name = "statusTextHostsCount";
-            this.statusTextHostsCount.Size = new System.Drawing.Size(114, 24);
-            this.statusTextHostsCount.Text = "当前共几个规则";
+            this.statusLabelHostsCount.Name = "statusLabelHostsCount";
+            this.statusLabelHostsCount.Size = new System.Drawing.Size(90, 24);
+            this.statusLabelHostsCount.Text = "共0个Hosts";
             // 
             // menuBar
             // 
@@ -104,8 +103,8 @@
             this.menuBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
-            this.helpMenu,
-            this.toolMenu});
+            this.toolMenu,
+            this.helpMenu});
             this.menuBar.Location = new System.Drawing.Point(0, 0);
             this.menuBar.Name = "menuBar";
             this.menuBar.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
@@ -149,44 +148,50 @@
             this.退出EToolStripMenuItem.Text = "退出(&E)";
             this.退出EToolStripMenuItem.Click += new System.EventHandler(this.OnExitMenuItemClick);
             // 
+            // toolMenu
+            // 
+            this.toolMenu.Name = "toolMenu";
+            this.toolMenu.Size = new System.Drawing.Size(72, 24);
+            this.toolMenu.Text = "工具(&T)";
+            // 
             // helpMenu
             // 
             this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.首选项ToolStripMenuItem,
+            this.menuItemConfig,
             this.menuItemDoc,
-            this.检查更新ToolStripMenuItem,
-            this.关于ToolStripMenuItem});
+            this.menuItemCheckUpdate,
+            this.menuItemAbout});
             this.helpMenu.Name = "helpMenu";
             this.helpMenu.Size = new System.Drawing.Size(75, 24);
             this.helpMenu.Text = "帮助(&H)";
             // 
-            // 首选项ToolStripMenuItem
+            // menuItemConfig
             // 
-            this.首选项ToolStripMenuItem.Name = "首选项ToolStripMenuItem";
-            this.首选项ToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
-            this.首选项ToolStripMenuItem.Text = "首选项";
-            this.首选项ToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemConfigClick);
+            this.menuItemConfig.Name = "menuItemConfig";
+            this.menuItemConfig.Size = new System.Drawing.Size(173, 26);
+            this.menuItemConfig.Text = "首选项(&P)";
+            this.menuItemConfig.Click += new System.EventHandler(this.OnMenuItemConfigClick);
             // 
             // menuItemDoc
             // 
             this.menuItemDoc.Name = "menuItemDoc";
-            this.menuItemDoc.Size = new System.Drawing.Size(152, 26);
-            this.menuItemDoc.Text = "帮助文档";
+            this.menuItemDoc.Size = new System.Drawing.Size(173, 26);
+            this.menuItemDoc.Text = "帮助文档(&D)";
             this.menuItemDoc.Click += new System.EventHandler(this.OnMenuItemDocClick);
             // 
-            // 检查更新ToolStripMenuItem
+            // menuItemCheckUpdate
             // 
-            this.检查更新ToolStripMenuItem.Name = "检查更新ToolStripMenuItem";
-            this.检查更新ToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
-            this.检查更新ToolStripMenuItem.Text = "检查更新";
-            this.检查更新ToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemCheckUpdateClick);
+            this.menuItemCheckUpdate.Name = "menuItemCheckUpdate";
+            this.menuItemCheckUpdate.Size = new System.Drawing.Size(173, 26);
+            this.menuItemCheckUpdate.Text = "检查更新(&C)";
+            this.menuItemCheckUpdate.Click += new System.EventHandler(this.OnMenuItemCheckUpdateClick);
             // 
-            // 关于ToolStripMenuItem
+            // menuItemAbout
             // 
-            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
-            this.关于ToolStripMenuItem.Text = "关于";
-            this.关于ToolStripMenuItem.Click += new System.EventHandler(this.OnAboutMenuItemClick);
+            this.menuItemAbout.Name = "menuItemAbout";
+            this.menuItemAbout.Size = new System.Drawing.Size(173, 26);
+            this.menuItemAbout.Text = "关于(&A)";
+            this.menuItemAbout.Click += new System.EventHandler(this.OnAboutMenuItemClick);
             // 
             // splitContainer1
             // 
@@ -204,7 +209,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.codeEditor);
             this.splitContainer1.Panel2MinSize = 200;
-            this.splitContainer1.Size = new System.Drawing.Size(900, 548);
+            this.splitContainer1.Size = new System.Drawing.Size(900, 540);
             this.splitContainer1.SplitterDistance = 299;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -212,14 +217,15 @@
             // 
             this.hostsTree.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.hostsTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hostsTree.HideSelection = false;
             this.hostsTree.HotTracking = true;
             this.hostsTree.Location = new System.Drawing.Point(0, 0);
             this.hostsTree.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.hostsTree.Name = "hostsTree";
-            this.hostsTree.Size = new System.Drawing.Size(299, 548);
+            this.hostsTree.Size = new System.Drawing.Size(299, 540);
             this.hostsTree.TabIndex = 0;
             this.hostsTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeNodeSelect);
-            this.hostsTree.DoubleClick += new System.EventHandler(this.OnHostDoubleClick);
+            this.hostsTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OnHostDoubleClick);
             // 
             // codeEditor
             // 
@@ -229,10 +235,11 @@
             this.codeEditor.Location = new System.Drawing.Point(0, 0);
             this.codeEditor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.codeEditor.Name = "codeEditor";
-            this.codeEditor.Size = new System.Drawing.Size(597, 548);
+            this.codeEditor.Size = new System.Drawing.Size(597, 540);
             this.codeEditor.TabIndex = 0;
             this.codeEditor.Text = "";
             this.codeEditor.TextChanged += new System.EventHandler(this.OnCodeChanged);
+            this.codeEditor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnCodeEditorKeyUp);
             // 
             // trayIcon
             // 
@@ -245,98 +252,8 @@
             // trayIconMenu
             // 
             this.trayIconMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.trayIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripTextBox1,
-            this.trayMenuToggleMainForm,
-            this.toolStripSeparator2,
-            this.trayMenuNewHosts,
-            this.toolStripSeparator1,
-            this.trayMenuChrome,
-            this.trayMenuRefreshDNS,
-            this.toolStripSeparator3,
-            this.trayMenuAbout,
-            this.trayMenuExit});
             this.trayIconMenu.Name = "trayIconMenu";
-            this.trayIconMenu.Size = new System.Drawing.Size(190, 190);
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Enabled = false;
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(189, 24);
-            this.toolStripTextBox1.Text = "mHosts.Net";
-            // 
-            // trayMenuToggleMainForm
-            // 
-            this.trayMenuToggleMainForm.Name = "trayMenuToggleMainForm";
-            this.trayMenuToggleMainForm.Size = new System.Drawing.Size(189, 24);
-            this.trayMenuToggleMainForm.Text = "显示/隐藏主窗口";
-            this.trayMenuToggleMainForm.Click += new System.EventHandler(this.OnToggleMenuItemClick);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(186, 6);
-            // 
-            // trayMenuNewHosts
-            // 
-            this.trayMenuNewHosts.Name = "trayMenuNewHosts";
-            this.trayMenuNewHosts.Size = new System.Drawing.Size(189, 24);
-            this.trayMenuNewHosts.Text = "新建Hosts规则";
-            this.trayMenuNewHosts.Click += new System.EventHandler(this.OnMenuItemNewHostsClick);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(186, 6);
-            // 
-            // trayMenuChrome
-            // 
-            this.trayMenuChrome.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.googleChromeToolStripMenuItem,
-            this.microsoftEdgeToolStripMenuItem});
-            this.trayMenuChrome.Name = "trayMenuChrome";
-            this.trayMenuChrome.Size = new System.Drawing.Size(189, 24);
-            this.trayMenuChrome.Text = "启动调试浏览器";
-            // 
-            // googleChromeToolStripMenuItem
-            // 
-            this.googleChromeToolStripMenuItem.Name = "googleChromeToolStripMenuItem";
-            this.googleChromeToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
-            this.googleChromeToolStripMenuItem.Text = "Google Chrome";
-            // 
-            // microsoftEdgeToolStripMenuItem
-            // 
-            this.microsoftEdgeToolStripMenuItem.Name = "microsoftEdgeToolStripMenuItem";
-            this.microsoftEdgeToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
-            this.microsoftEdgeToolStripMenuItem.Text = "Microsoft Edge";
-            this.microsoftEdgeToolStripMenuItem.Click += new System.EventHandler(this.OnLaunchBrowser);
-            // 
-            // trayMenuRefreshDNS
-            // 
-            this.trayMenuRefreshDNS.Name = "trayMenuRefreshDNS";
-            this.trayMenuRefreshDNS.Size = new System.Drawing.Size(189, 24);
-            this.trayMenuRefreshDNS.Text = "刷新DNS缓存";
-            this.trayMenuRefreshDNS.Click += new System.EventHandler(this.OnTrayMenuRefreshClick);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(186, 6);
-            // 
-            // trayMenuAbout
-            // 
-            this.trayMenuAbout.Name = "trayMenuAbout";
-            this.trayMenuAbout.Size = new System.Drawing.Size(189, 24);
-            this.trayMenuAbout.Text = "关于";
-            this.trayMenuAbout.Click += new System.EventHandler(this.OnAboutMenuItemClick);
-            // 
-            // trayMenuExit
-            // 
-            this.trayMenuExit.Name = "trayMenuExit";
-            this.trayMenuExit.Size = new System.Drawing.Size(189, 24);
-            this.trayMenuExit.Text = "退出";
-            this.trayMenuExit.Click += new System.EventHandler(this.OnExitMenuItemClick);
+            this.trayIconMenu.Size = new System.Drawing.Size(61, 4);
             // 
             // processRefreshDNS
             // 
@@ -354,12 +271,6 @@
             this.processRefreshDNS.StartInfo.UseShellExecute = false;
             this.processRefreshDNS.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
             this.processRefreshDNS.SynchronizingObject = this;
-            // 
-            // toolMenu
-            // 
-            this.toolMenu.Name = "toolMenu";
-            this.toolMenu.Size = new System.Drawing.Size(72, 24);
-            this.toolMenu.Text = "工具(&T)";
             // 
             // MainForm
             // 
@@ -379,13 +290,14 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.Load += new System.EventHandler(this.OnMainFormLoad);
+            this.statusBar.ResumeLayout(false);
+            this.statusBar.PerformLayout();
             this.menuBar.ResumeLayout(false);
             this.menuBar.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.trayIconMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,28 +315,16 @@
         private System.Windows.Forms.TreeView hostsTree;
         private System.Windows.Forms.RichTextBox codeEditor;
         private System.Windows.Forms.ToolStripMenuItem helpMenu;
-        private System.Windows.Forms.ToolStripMenuItem 首选项ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemConfig;
         private System.Windows.Forms.ToolStripMenuItem menuItemDoc;
-        private System.Windows.Forms.ToolStripMenuItem 检查更新ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripStatusLabel statusTextHostsCount;
+        private System.Windows.Forms.ToolStripMenuItem menuItemCheckUpdate;
+        private System.Windows.Forms.ToolStripMenuItem menuItemAbout;
         private System.Windows.Forms.NotifyIcon trayIcon;
         private System.Windows.Forms.ContextMenuStrip trayIconMenu;
-        private System.Windows.Forms.ToolStripMenuItem trayMenuToggleMainForm;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem trayMenuExit;
-        private System.Windows.Forms.ToolStripMenuItem toolStripTextBox1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem trayMenuNewHosts;
-        private System.Windows.Forms.ToolStripMenuItem trayMenuChrome;
-        private System.Windows.Forms.ToolStripMenuItem googleChromeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem microsoftEdgeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem trayMenuRefreshDNS;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem trayMenuAbout;
         private System.Diagnostics.Process processRefreshDNS;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem toolMenu;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabelHostsCount;
     }
 }
 
