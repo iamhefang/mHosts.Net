@@ -1,9 +1,9 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="mHosts.Net.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="hosts" Type="System.Collections.Generic.List&lt;mHosts.Net.entities.Host&gt;" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt; &lt;ArrayOfHost xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;   &lt;Host Id=&quot;b11d1f88-7be0-4dbf-b0a8-8b102bd7682b&quot; Name=&quot;公共&quot;&gt;     &lt;ReadOnly&gt;false&lt;/ReadOnly&gt;     &lt;AlwaysApply&gt;true&lt;/AlwaysApply&gt;     &lt;LastUpdateTime&gt;2020-04-28T08:44:57.8818679+08:00&lt;/LastUpdateTime&gt;     &lt;Active&gt;true&lt;/Active&gt;     &lt;Content&gt;# 该Hosts是共公Hosts，在应用其他Hosts时该Hosts会自动添加到最前面&lt;/Content&gt;   &lt;/Host&gt;   &lt;Host Id=&quot;d46b6833-6cc1-4ca1-9cc6-7fa416f9d9c4&quot; Name=&quot;开发环境&quot;&gt;     &lt;ReadOnly&gt;false&lt;/ReadOnly&gt;     &lt;AlwaysApply&gt;false&lt;/AlwaysApply&gt;     &lt;LastUpdateTime&gt;2020-04-28T08:44:57.882865+08:00&lt;/LastUpdateTime&gt;     &lt;Active&gt;false&lt;/Active&gt;     &lt;Content&gt;# 开发环境&lt;/Content&gt;   &lt;/Host&gt;   &lt;Host Id=&quot;2c06a785-5e29-423c-bf9d-a60e616ad6e1&quot; Name=&quot;生产环境&quot;&gt;     &lt;ReadOnly&gt;false&lt;/ReadOnly&gt;     &lt;AlwaysApply&gt;false&lt;/AlwaysApply&gt;     &lt;LastUpdateTime&gt;2020-04-28T08:44:57.882865+08:00&lt;/LastUpdateTime&gt;     &lt;Active&gt;false&lt;/Active&gt;     &lt;Content&gt;# 生产环境&lt;/Content&gt;   &lt;/Host&gt; &lt;/ArrayOfHost&gt;</Value>
     </Setting>
     <Setting Name="tools" Type="System.Collections.Generic.List&lt;mHosts.Net.entities.Tool&gt;" Scope="User">
       <Value Profile="(Default)" />
@@ -13,3 +13,4 @@
     </Setting>
   </Settings>
 </SettingsFile>
+

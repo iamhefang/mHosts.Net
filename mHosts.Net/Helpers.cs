@@ -1,14 +1,63 @@
 ﻿using mHosts.Net.entities;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
+using mHosts.Net.Properties;
 
 namespace mHosts.Net
 {
-    class Helpers
+    internal static class Helpers
     {
+        public static readonly Dictionary<string, Bitmap> ImgMap = new Dictionary<string, Bitmap>
+        {
+            {"logo", Resources.logo},
+            {"aliyun", Resources.aliyun},
+            {"chrome", Resources.chrome},
+            {"darwin", Resources.darwin},
+            {"database", Resources.database},
+            {"edge", Resources.edge},
+            {"firefox", Resources.firefox},
+            {"java", Resources.java},
+            {"linux", Resources.linux},
+            {"mysql", Resources.mysql},
+            {"postgresql", Resources.postgresql},
+            {"python", Resources.python},
+            {"qq", Resources.qq},
+            {"windows", Resources.windows}
+        };
+
+        public static string[] MergeHosts(Host host2Merge)
+        {
+            var ass = Assembly.GetExecutingAssembly().GetName();
+
+            var hosts = Settings.Default.hosts;
+            var lines = new List<string>(hosts.Count * 2)
+            {
+                $"# Hosts Apply by {ass.Name} v{ass.Version} {DateTime.Now}"
+            };
+            foreach (var host in hosts.Where(host => host.AlwaysApply))
+            {
+                lines.InsertRange(1, host.Content.Split('\n'));
+                lines.Insert(1, $"\n#----------- {host.Name} -----------");
+            }
+
+            lines.Add($"\n#----------- {host2Merge.Name} -----------");
+            lines.AddRange(host2Merge.Content.Split('\n'));
+
+            for (var i = 0; i < lines.Count; i++)
+            {
+                lines[i] = lines[i].Trim();
+            }
+
+            lines.Reverse();
+            return new HashSet<string>(lines).Reverse().ToArray();
+        }
 
         public static ToolStripItem[] MakeToolMenu(Tool[] tools)
         {
@@ -33,6 +82,7 @@ namespace mHosts.Net
 
                 menus[i] = menu;
             }
+
             return menus;
         }
 
@@ -42,6 +92,7 @@ namespace mHosts.Net
             {
                 return;
             }
+
             var lastSelectionStart = editor.SelectionStart;
             for (var line = 0; line < editor.Lines.Length; line++)
             {

@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Configuration;
 using System.Xml.Serialization;
 
 namespace mHosts.Net.entities
 {
-    [Serializable]
-    class Tool
+    [SettingsSerializeAs(SettingsSerializeAs.Xml)]
+    public class Tool
     {
         [XmlAttribute]
         public string Id { get; set; }
@@ -12,10 +13,8 @@ namespace mHosts.Net.entities
         [XmlAttribute]
         public string Name { get; set; }
 
-        [XmlAttribute]
         public string Cmd { get; set; }
 
-        [XmlAttribute]
         public string Args { get; set; }
 
         public Tool[] Children { get; set; } = new Tool[0];

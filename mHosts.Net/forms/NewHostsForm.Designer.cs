@@ -134,7 +134,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radioOnlineHosts);
             this.Controls.Add(this.radioLocalHosts);
-            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
@@ -144,18 +144,17 @@
             this.Text = "新建Hosts";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
-        #endregion
-
-        private System.Windows.Forms.RadioButton radioLocalHosts;
-        private System.Windows.Forms.RadioButton radioOnlineHosts;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox inputHostsName;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox inputHostsUrl;
         private System.Windows.Forms.Button btnSaveHosts;
         private System.Windows.Forms.CheckBox chkAlwaysApply;
+        private System.Windows.Forms.TextBox inputHostsName;
+        private System.Windows.Forms.TextBox inputHostsUrl;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton radioLocalHosts;
+        private System.Windows.Forms.RadioButton radioOnlineHosts;
+
+        #endregion
     }
 }

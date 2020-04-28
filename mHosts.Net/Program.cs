@@ -11,7 +11,6 @@ namespace mHosts.Net
 {
     static class Program
     {
-        public static EventWaitHandle ProgramStarted;
         private enum ProcessDpiAwareness
         {
             DPI_UNAWARE = 0,
@@ -28,8 +27,14 @@ namespace mHosts.Net
         static void Main()
         {
             SetProcessDpiAwareness(ProcessDpiAwareness.PER_MONITOR_DPI_AWARE);
+            #if DEBUG
+            var singleInstanceKey = Resources.DebugSingleInstanceKey;
+            #else
+            var singleInstanceKey = Resources.SingleInstanceKey;
+            #endif
+            
             // 尝试创建一个命名事件
-            ProgramStarted = new EventWaitHandle(false, EventResetMode.AutoReset, Resources.SingleInstanceKey, out var noInstanceNow);
+            var eventWaitHandle = new EventWaitHandle(false, EventResetMode.AutoReset, singleInstanceKey, out var noInstanceNow);
             if (!noInstanceNow)
             {
                 MessageBox.Show(@"当前应用有在运行中，无需重复打开", @"应用已在运行", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -52,51 +57,51 @@ namespace mHosts.Net
             {
                 InitTools();
             }
-       }
+            
+        }
 
         private static void InitHost()
         {
-            Settings.Default.hosts = new List<Host>
-            {
-                new Host
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Name = "公共",
-                    Active = true,
-                    AlwaysApply = true,
-                    Content = "# 公共\n",
-                    LastUpdateTime = DateTime.Now,
-                    ReadOnly = false,
-                    Url = null
-                },
-                new Host
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Name = "开发环境",
-                    Active = false,
-                    AlwaysApply = false,
-                    Content = "# 开发环境\n",
-                    LastUpdateTime = DateTime.Now,
-                    ReadOnly = false,
-                    Url = null
-                },
-                new Host
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Name = "生产环境",
-                    Active = false,
-                    AlwaysApply = false,
-                    Content = "# 生产环境\n",
-                    LastUpdateTime = DateTime.Now,
-                    ReadOnly = false,
-                    Url = null
-                }
-            };
+            //Settings.Default.hosts = new List<Host>
+            //{
+            //    new Host
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Name = "公共",
+            //        Active = true,
+            //        AlwaysApply = true,
+            //        Content = "# 公共\n",
+            //        LastUpdateTime = DateTime.Now,
+            //        ReadOnly = false,
+            //        Url = null
+            //    },
+            //    new Host
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Name = "开发环境",
+            //        Active = false,
+            //        AlwaysApply = false,
+            //        Content = "# 开发环境\n",
+            //        LastUpdateTime = DateTime.Now,
+            //        ReadOnly = false,
+            //        Url = null
+            //    },
+            //    new Host
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Name = "生产环境",
+            //        Active = false,
+            //        AlwaysApply = false,
+            //        Content = "# 生产环境\n",
+            //        LastUpdateTime = DateTime.Now,
+            //        ReadOnly = false,
+            //        Url = null
+            //    }
+            //};
         }
 
         private static void InitTools()
         {
-            Console.WriteLine($"{Environment.GetEnvironmentVariable("TMP")}\\mHostsDotNetMsEdgeTmpDir\\!!GUID!!");
             Settings.Default.tools = new List<Tool>();
 
             var chromePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86)}\\Google\\Chrome\\Application\\chrome.exe";
@@ -165,7 +170,6 @@ namespace mHosts.Net
                     }
                 });
             }
-
         }
     }
 }

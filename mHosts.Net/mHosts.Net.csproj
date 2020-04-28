@@ -100,6 +100,7 @@
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="entities\Host.cs" />
+    <Compile Include="entities\RefreshDnsStatus.cs" />
     <Compile Include="entities\Tool.cs" />
     <Compile Include="forms\NewHostsForm.cs">
       <SubType>Form</SubType>
@@ -114,14 +115,27 @@
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers.cs" />
+    <Compile Include="MainForm.CodeEditorEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForm.HostsTreeEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Init.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.MenuEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +188,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <None Include="Resources\switch.png" />
+    <None Include="Resources\win32.png" />
+    <None Include="Resources\aliyun.png" />
+    <None Include="Resources\chrome.png" />
+    <None Include="Resources\darwin.png" />
+    <None Include="Resources\database.png" />
+    <None Include="Resources\edge.png" />
+    <None Include="Resources\firefox.png" />
+    <None Include="Resources\java.png" />
+    <None Include="Resources\linux.png" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\mysql.png" />
+    <None Include="Resources\postgresql.png" />
+    <None Include="Resources\python.png" />
+    <None Include="Resources\qq.png" />
+    <None Include="Resources\server.png" />
+    <None Include="Resources\table.png" />
+    <None Include="Resources\user.png" />
+    <None Include="Resources\wechat.png" />
+    <Content Include="temp\hosts.xml" />
     <None Include="Resources\logo.ico" />
   </ItemGroup>
   <ItemGroup />

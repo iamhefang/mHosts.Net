@@ -12,7 +12,7 @@ namespace mHosts.Net.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.5.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,6 +25,7 @@ namespace mHosts.Net.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?> <ArrayOfHost xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">   <Host Id=""b11d1f88-7be0-4dbf-b0a8-8b102bd7682b"" Name=""公共"">     <ReadOnly>false</ReadOnly>     <AlwaysApply>true</AlwaysApply>     <LastUpdateTime>2020-04-28T08:44:57.8818679+08:00</LastUpdateTime>     <Active>true</Active>     <Content># 该Hosts是共公Hosts，在应用其他Hosts时该Hosts会自动添加到最前面</Content>   </Host>   <Host Id=""d46b6833-6cc1-4ca1-9cc6-7fa416f9d9c4"" Name=""开发环境"">     <ReadOnly>false</ReadOnly>     <AlwaysApply>false</AlwaysApply>     <LastUpdateTime>2020-04-28T08:44:57.882865+08:00</LastUpdateTime>     <Active>false</Active>     <Content># 开发环境</Content>   </Host>   <Host Id=""2c06a785-5e29-423c-bf9d-a60e616ad6e1"" Name=""生产环境"">     <ReadOnly>false</ReadOnly>     <AlwaysApply>false</AlwaysApply>     <LastUpdateTime>2020-04-28T08:44:57.882865+08:00</LastUpdateTime>     <Active>false</Active>     <Content># 生产环境</Content>   </Host> </ArrayOfHost>")]
         public global::System.Collections.Generic.List<mHosts.Net.entities.Host> hosts {
             get {
                 return ((global::System.Collections.Generic.List<mHosts.Net.entities.Host>)(this["hosts"]));
