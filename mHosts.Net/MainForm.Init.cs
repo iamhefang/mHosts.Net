@@ -39,7 +39,7 @@ namespace mHosts.Net
             }
             hostsTree.Nodes.Add("system-hosts", "当前系统", "windows");
             codeEditor.Text = Helpers.ReadText(Settings.Default.hostsPath);
-            foreach (var node in from host in Settings.Default.hosts let node = hostsTree.Nodes.Add(host.Id, host.Name,"logo") where host.Active || host.AlwaysApply select node)
+            foreach (var node in from host in Settings.Default.hosts let node = hostsTree.Nodes.Add(host.Id, host.Name, host.Icon ?? "logo") where host.Active || host.AlwaysApply select node)
             {
                 node.NodeFont = new Font(hostsTree.Font.FontFamily, hostsTree.Font.Size, FontStyle.Bold);
                 node.ForeColor = Color.CornflowerBlue;
@@ -76,9 +76,9 @@ namespace mHosts.Net
 
             var newTool = new ToolStripMenuItem("添加新工具(&A)");
             newTool.Click += OnNewToolMenuItemClick;
-            
+
             toolMenu.DropDownItems.Add(newTool);
-            
+
         }
 
         private void InitTrayMenu(ToolStrip menu)

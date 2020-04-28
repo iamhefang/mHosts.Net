@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.Label label3;
             this.radioLocalHosts = new System.Windows.Forms.RadioButton();
             this.radioOnlineHosts = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -36,6 +37,8 @@
             this.inputHostsUrl = new System.Windows.Forms.TextBox();
             this.btnSaveHosts = new System.Windows.Forms.Button();
             this.chkAlwaysApply = new System.Windows.Forms.CheckBox();
+            this.selectHostIcon = new System.Windows.Forms.ComboBox();
+            label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // radioLocalHosts
@@ -102,7 +105,7 @@
             // 
             // btnSaveHosts
             // 
-            this.btnSaveHosts.Location = new System.Drawing.Point(366, 199);
+            this.btnSaveHosts.Location = new System.Drawing.Point(366, 264);
             this.btnSaveHosts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSaveHosts.Name = "btnSaveHosts";
             this.btnSaveHosts.Size = new System.Drawing.Size(84, 31);
@@ -114,18 +117,53 @@
             // chkAlwaysApply
             // 
             this.chkAlwaysApply.AutoSize = true;
-            this.chkAlwaysApply.Location = new System.Drawing.Point(98, 199);
+            this.chkAlwaysApply.Location = new System.Drawing.Point(98, 264);
             this.chkAlwaysApply.Name = "chkAlwaysApply";
             this.chkAlwaysApply.Size = new System.Drawing.Size(91, 24);
             this.chkAlwaysApply.TabIndex = 7;
             this.chkAlwaysApply.Text = "总是生效";
             this.chkAlwaysApply.UseVisualStyleBackColor = true;
             // 
+            // selectHostIcon
+            // 
+            this.selectHostIcon.AutoCompleteCustomSource.AddRange(new string[] {
+            "logo",
+            "aliyun",
+            "chrome",
+            "darwin",
+            "database",
+            "edge",
+            "firefox",
+            "java",
+            "linux",
+            "mysql",
+            "postgresql",
+            "python",
+            "qq",
+            "windows"});
+            this.selectHostIcon.FormattingEnabled = true;
+            this.selectHostIcon.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.selectHostIcon.Location = new System.Drawing.Point(98, 200);
+            this.selectHostIcon.Name = "selectHostIcon";
+            this.selectHostIcon.Size = new System.Drawing.Size(352, 28);
+            this.selectHostIcon.TabIndex = 8;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(45, 203);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(39, 20);
+            label3.TabIndex = 9;
+            label3.Text = "图标";
+            // 
             // NewHostsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 264);
+            this.ClientSize = new System.Drawing.Size(494, 324);
+            this.Controls.Add(label3);
+            this.Controls.Add(this.selectHostIcon);
             this.Controls.Add(this.chkAlwaysApply);
             this.Controls.Add(this.btnSaveHosts);
             this.Controls.Add(this.inputHostsUrl);
@@ -134,7 +172,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radioOnlineHosts);
             this.Controls.Add(this.radioLocalHosts);
-            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
@@ -144,6 +182,7 @@
             this.Text = "新建Hosts";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private System.Windows.Forms.Button btnSaveHosts;
@@ -156,5 +195,7 @@
         private System.Windows.Forms.RadioButton radioOnlineHosts;
 
         #endregion
+
+        private System.Windows.Forms.ComboBox selectHostIcon;
     }
 }

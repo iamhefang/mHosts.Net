@@ -94,5 +94,32 @@ namespace mHosts.Net
             trayIcon.Dispose();
             Environment.Exit(0);
         }
+
+        private void OnEditorContextMenuSelectAllClick(object sender, EventArgs e)
+        {
+            codeEditor.SelectAll();
+        }
+
+        private void OnEditorContextMenuOpening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            codeEditorContextMenu.Items[1].Enabled = codeEditor.SelectionLength != 0;
+            codeEditorContextMenu.Items[2].Enabled = !codeEditor.ReadOnly && codeEditor.SelectionLength != 0;
+            codeEditorContextMenu.Items[3].Enabled = codeEditor.CanPaste(DataFormats.GetFormat(DataFormats.Text));
+        }
+
+        private void OnEditorContextMenuCopyClick(object sender, EventArgs e)
+        {
+            codeEditor.Copy();
+        }
+
+        private void OnEditorContextMenuCutClick(object sender, EventArgs e)
+        {
+            codeEditor.Cut();
+        }
+
+        private void OnEditorContextMenuPasteClick(object sender, EventArgs e)
+        {
+            codeEditor.Paste();
+        }
     }
 }

@@ -22,5 +22,6 @@ namespace mHosts.Net.entities
         public bool Active { get; set; } = false;
         
         public string Content { get; set; }
+        public string Icon { get; set; }
     }
 }

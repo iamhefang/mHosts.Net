@@ -42,13 +42,15 @@ namespace mHosts.Net.forms
                 MessageBox.Show($@"在线Hosts地址'{inputHostsUrl.Text}'已存在", @"保存失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             var host = new Host
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = inputHostsName.Text,
                 Url = radioOnlineHosts.Checked ? inputHostsUrl.Text : null,
                 LastUpdateTime = DateTime.Now,
-                AlwaysApply = chkAlwaysApply.Checked
+                AlwaysApply = chkAlwaysApply.Checked,
+                Icon = selectHostIcon.Text
             };
             Settings.Default.hosts.Add(host);
             Settings.Default.Save();
