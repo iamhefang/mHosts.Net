@@ -2,8 +2,8 @@
 {
     public enum RefreshDnsStatus
     {
-        SUCCESS,
-        FAILED,
-        ERROR
+        Success,
+        Failed,
+        Error
     }
 }

@@ -51,14 +51,14 @@ namespace mHosts.Net
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.hostsTree = new System.Windows.Forms.TreeView();
             this.codeEditor = new System.Windows.Forms.RichTextBox();
-            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.trayIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.processRefreshDNS = new System.Diagnostics.Process();
             this.codeEditorContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editorContextMenuSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.剪切ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.粘贴ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.trayIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.processRefreshDNS = new System.Diagnostics.Process();
             toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBar.SuspendLayout();
@@ -162,28 +162,28 @@ namespace mHosts.Net
             // menuItemConfig
             // 
             this.menuItemConfig.Name = "menuItemConfig";
-            this.menuItemConfig.Size = new System.Drawing.Size(165, 26);
+            this.menuItemConfig.Size = new System.Drawing.Size(181, 26);
             this.menuItemConfig.Text = "首选项(&P)";
             this.menuItemConfig.Click += new System.EventHandler(this.OnMenuItemConfigClick);
             // 
             // menuItemDoc
             // 
             this.menuItemDoc.Name = "menuItemDoc";
-            this.menuItemDoc.Size = new System.Drawing.Size(165, 26);
+            this.menuItemDoc.Size = new System.Drawing.Size(181, 26);
             this.menuItemDoc.Text = "帮助文档(&D)";
             this.menuItemDoc.Click += new System.EventHandler(this.OnMenuItemDocClick);
             // 
             // menuItemCheckUpdate
             // 
             this.menuItemCheckUpdate.Name = "menuItemCheckUpdate";
-            this.menuItemCheckUpdate.Size = new System.Drawing.Size(165, 26);
+            this.menuItemCheckUpdate.Size = new System.Drawing.Size(181, 26);
             this.menuItemCheckUpdate.Text = "检查更新(&C)";
             this.menuItemCheckUpdate.Click += new System.EventHandler(this.OnMenuItemCheckUpdateClick);
             // 
             // menuItemAbout
             // 
             this.menuItemAbout.Name = "menuItemAbout";
-            this.menuItemAbout.Size = new System.Drawing.Size(165, 26);
+            this.menuItemAbout.Size = new System.Drawing.Size(181, 26);
             this.menuItemAbout.Text = "关于(&A)";
             this.menuItemAbout.Click += new System.EventHandler(this.OnAboutMenuItemClick);
             // 
@@ -237,37 +237,6 @@ namespace mHosts.Net
             this.codeEditor.TextChanged += new System.EventHandler(this.OnCodeChanged);
             this.codeEditor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnCodeEditorKeyUp);
             // 
-            // trayIcon
-            // 
-            this.trayIcon.ContextMenuStrip = this.trayIconMenu;
-            this.trayIcon.Icon = ((System.Drawing.Icon) (resources.GetObject("trayIcon.Icon")));
-            this.trayIcon.Text = "mHosts.Net正在运行";
-            this.trayIcon.Visible = true;
-            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OnTrayIconDoubleClick);
-            // 
-            // trayIconMenu
-            // 
-            this.trayIconMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.trayIconMenu.Name = "trayIconMenu";
-            this.trayIconMenu.Size = new System.Drawing.Size(61, 4);
-            // 
-            // processRefreshDNS
-            // 
-            this.processRefreshDNS.StartInfo.Arguments = "/flushdns";
-            this.processRefreshDNS.StartInfo.CreateNoWindow = true;
-            this.processRefreshDNS.StartInfo.Domain = "";
-            this.processRefreshDNS.StartInfo.FileName = "ipconfig";
-            this.processRefreshDNS.StartInfo.LoadUserProfile = false;
-            this.processRefreshDNS.StartInfo.Password = null;
-            this.processRefreshDNS.StartInfo.RedirectStandardError = true;
-            this.processRefreshDNS.StartInfo.RedirectStandardOutput = true;
-            this.processRefreshDNS.StartInfo.StandardErrorEncoding = null;
-            this.processRefreshDNS.StartInfo.StandardOutputEncoding = null;
-            this.processRefreshDNS.StartInfo.UserName = "";
-            this.processRefreshDNS.StartInfo.UseShellExecute = false;
-            this.processRefreshDNS.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-            this.processRefreshDNS.SynchronizingObject = this;
-            // 
             // codeEditorContextMenu
             // 
             this.codeEditorContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -302,6 +271,37 @@ namespace mHosts.Net
             this.粘贴ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.粘贴ToolStripMenuItem.Size = new System.Drawing.Size(165, 24);
             this.粘贴ToolStripMenuItem.Text = "粘贴";
+            // 
+            // trayIcon
+            // 
+            this.trayIcon.ContextMenuStrip = this.trayIconMenu;
+            this.trayIcon.Icon = ((System.Drawing.Icon) (resources.GetObject("trayIcon.Icon")));
+            this.trayIcon.Text = "mHosts.Net正在运行";
+            this.trayIcon.Visible = true;
+            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OnTrayIconDoubleClick);
+            // 
+            // trayIconMenu
+            // 
+            this.trayIconMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.trayIconMenu.Name = "trayIconMenu";
+            this.trayIconMenu.Size = new System.Drawing.Size(61, 4);
+            // 
+            // processRefreshDNS
+            // 
+            this.processRefreshDNS.StartInfo.Arguments = "/flushdns";
+            this.processRefreshDNS.StartInfo.CreateNoWindow = true;
+            this.processRefreshDNS.StartInfo.Domain = "";
+            this.processRefreshDNS.StartInfo.FileName = "ipconfig";
+            this.processRefreshDNS.StartInfo.LoadUserProfile = false;
+            this.processRefreshDNS.StartInfo.Password = null;
+            this.processRefreshDNS.StartInfo.RedirectStandardError = true;
+            this.processRefreshDNS.StartInfo.RedirectStandardOutput = true;
+            this.processRefreshDNS.StartInfo.StandardErrorEncoding = null;
+            this.processRefreshDNS.StartInfo.StandardOutputEncoding = null;
+            this.processRefreshDNS.StartInfo.UserName = "";
+            this.processRefreshDNS.StartInfo.UseShellExecute = false;
+            this.processRefreshDNS.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            this.processRefreshDNS.SynchronizingObject = this;
             // 
             // MainForm
             // 

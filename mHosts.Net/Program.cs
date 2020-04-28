@@ -25,7 +25,7 @@ namespace mHosts.Net
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        {            
             SetProcessDpiAwareness(ProcessDpiAwareness.PER_MONITOR_DPI_AWARE);
             #if DEBUG
             var singleInstanceKey = Resources.DebugSingleInstanceKey;
@@ -48,56 +48,10 @@ namespace mHosts.Net
 
         public static void InitSettings()
         {
-            if (Settings.Default.hosts == null)
-            {
-                InitHost();
-            }
-
             if (Settings.Default.tools == null)
             {
                 InitTools();
             }
-            
-        }
-
-        private static void InitHost()
-        {
-            //Settings.Default.hosts = new List<Host>
-            //{
-            //    new Host
-            //    {
-            //        Id = Guid.NewGuid().ToString(),
-            //        Name = "公共",
-            //        Active = true,
-            //        AlwaysApply = true,
-            //        Content = "# 公共\n",
-            //        LastUpdateTime = DateTime.Now,
-            //        ReadOnly = false,
-            //        Url = null
-            //    },
-            //    new Host
-            //    {
-            //        Id = Guid.NewGuid().ToString(),
-            //        Name = "开发环境",
-            //        Active = false,
-            //        AlwaysApply = false,
-            //        Content = "# 开发环境\n",
-            //        LastUpdateTime = DateTime.Now,
-            //        ReadOnly = false,
-            //        Url = null
-            //    },
-            //    new Host
-            //    {
-            //        Id = Guid.NewGuid().ToString(),
-            //        Name = "生产环境",
-            //        Active = false,
-            //        AlwaysApply = false,
-            //        Content = "# 生产环境\n",
-            //        LastUpdateTime = DateTime.Now,
-            //        ReadOnly = false,
-            //        Url = null
-            //    }
-            //};
         }
 
         private static void InitTools()

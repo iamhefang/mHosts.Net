@@ -46,14 +46,14 @@ namespace mHosts.Net
                     {
                         trayIcon.ShowBalloonTip(5000, "操作成功", "DNS缓存刷新成功", ToolTipIcon.Info);
                     }
-                    return RefreshDnsStatus.SUCCESS;
+                    return RefreshDnsStatus.Success;
                 }
 
                 if (showTip)
                 {
                     trayIcon.ShowBalloonTip(5000, "操作失败", "DNS缓存刷新失败", ToolTipIcon.Error);
                 }
-                return RefreshDnsStatus.FAILED;
+                return RefreshDnsStatus.Failed;
             }
             catch (Exception)
             {
@@ -61,7 +61,7 @@ namespace mHosts.Net
                 {
                     trayIcon.ShowBalloonTip(5000, "出现错误", "刷新DNS缓存时出错", ToolTipIcon.Error);
                 }
-                return RefreshDnsStatus.ERROR;
+                return RefreshDnsStatus.Error;
             }
         }
 
@@ -70,13 +70,13 @@ namespace mHosts.Net
             var status = DoRefreshDns();
             switch (status)
             {
-                case RefreshDnsStatus.SUCCESS:
+                case RefreshDnsStatus.Success:
                     trayIcon.ShowBalloonTip(5000, "操作成功", "DNS缓存刷新成功", ToolTipIcon.Info);
                     break;
-                case RefreshDnsStatus.FAILED:
+                case RefreshDnsStatus.Failed:
                     trayIcon.ShowBalloonTip(5000, "操作失败", "DNS缓存刷新失败", ToolTipIcon.Error);
                     break;
-                case RefreshDnsStatus.ERROR:
+                case RefreshDnsStatus.Error:
                     trayIcon.ShowBalloonTip(5000, "出现错误", "刷新DNS缓存时出错", ToolTipIcon.Error);
                     break;
                 default:
@@ -121,6 +121,12 @@ namespace mHosts.Net
         private void OnToggleMenuItemClick(object sender, EventArgs e)
         {
             ToggleVisible();
+        }
+
+        private void OnNewToolMenuItemClick(object sender, EventArgs e)
+        {
+            var dialog = new SettingForm {tabs = {SelectedIndex = 1}};
+            dialog.ShowDialog(this);
         }
     }
 }

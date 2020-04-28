@@ -73,6 +73,12 @@ namespace mHosts.Net
 
             toolMenu.DropDownItems.Add(refreshDns);
             toolMenu.DropDownItems.AddRange(Helpers.MakeToolMenu(Settings.Default.tools.ToArray()));
+
+            var newTool = new ToolStripMenuItem("添加新工具(&A)");
+            newTool.Click += OnNewToolMenuItemClick;
+            
+            toolMenu.DropDownItems.Add(newTool);
+            
         }
 
         private void InitTrayMenu(ToolStrip menu)

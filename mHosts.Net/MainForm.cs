@@ -55,13 +55,13 @@ namespace mHosts.Net
 
                 switch (res)
                 {
-                    case RefreshDnsStatus.SUCCESS:
+                    case RefreshDnsStatus.Success:
                         msg += "\n刷新DNS缓存成功";
                         break;
-                    case RefreshDnsStatus.ERROR:
+                    case RefreshDnsStatus.Error:
                         msg += "\n刷新DNS缓存出错";
                         break;
-                    case RefreshDnsStatus.FAILED:
+                    case RefreshDnsStatus.Failed:
                         break;
                     default:
                         msg += "\n刷新DNS缓存失败";

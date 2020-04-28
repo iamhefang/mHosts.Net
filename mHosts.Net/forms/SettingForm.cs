@@ -17,9 +17,8 @@ namespace mHosts.Net.forms
             InitializeComponent();
         }
 
-        private void SettingForm_Load(object sender, EventArgs e)
+        private void OnSettingFormLoad(object sender, EventArgs e)
         {
-
         }
     }
 }
