@@ -86,12 +86,12 @@ namespace mHosts.Net
 
         private void OnMenuItemCheckUpdateClick(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/iamhefang/mHosts/releases")?.Close();
+            Process.Start("https://github.com/iamhefang/mHosts.Net/releases")?.Close();
         }
 
         private void OnMenuItemDocClick(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/iamhefang/mHosts/wiki")?.Close();
+            Process.Start("https://github.com/iamhefang/mHosts.Net/wiki")?.Close();
         }
 
         private void OnExitMenuItemClick(object sender, EventArgs e)

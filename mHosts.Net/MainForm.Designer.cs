@@ -162,28 +162,28 @@ namespace mHosts.Net
             // menuItemConfig
             // 
             this.menuItemConfig.Name = "menuItemConfig";
-            this.menuItemConfig.Size = new System.Drawing.Size(181, 26);
+            this.menuItemConfig.Size = new System.Drawing.Size(165, 26);
             this.menuItemConfig.Text = "首选项(&P)";
             this.menuItemConfig.Click += new System.EventHandler(this.OnMenuItemConfigClick);
             // 
             // menuItemDoc
             // 
             this.menuItemDoc.Name = "menuItemDoc";
-            this.menuItemDoc.Size = new System.Drawing.Size(181, 26);
+            this.menuItemDoc.Size = new System.Drawing.Size(165, 26);
             this.menuItemDoc.Text = "帮助文档(&D)";
             this.menuItemDoc.Click += new System.EventHandler(this.OnMenuItemDocClick);
             // 
             // menuItemCheckUpdate
             // 
             this.menuItemCheckUpdate.Name = "menuItemCheckUpdate";
-            this.menuItemCheckUpdate.Size = new System.Drawing.Size(181, 26);
+            this.menuItemCheckUpdate.Size = new System.Drawing.Size(165, 26);
             this.menuItemCheckUpdate.Text = "检查更新(&C)";
             this.menuItemCheckUpdate.Click += new System.EventHandler(this.OnMenuItemCheckUpdateClick);
             // 
             // menuItemAbout
             // 
             this.menuItemAbout.Name = "menuItemAbout";
-            this.menuItemAbout.Size = new System.Drawing.Size(181, 26);
+            this.menuItemAbout.Size = new System.Drawing.Size(165, 26);
             this.menuItemAbout.Text = "关于(&A)";
             this.menuItemAbout.Click += new System.EventHandler(this.OnAboutMenuItemClick);
             // 
