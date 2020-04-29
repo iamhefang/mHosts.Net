@@ -6,9 +6,34 @@ namespace mHosts.Net
 {
     sealed partial class MainForm
     {
+        private void OnEditorContextMenuSelectAllClick(object sender, EventArgs e)
+        {
+            codeEditor.SelectAll();
+        }
+
+        private void OnEditorContextMenuOpening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            codeEditorContextMenu.Items[1].Enabled = codeEditor.SelectionLength != 0;
+            codeEditorContextMenu.Items[2].Enabled = !codeEditor.ReadOnly && codeEditor.SelectionLength != 0;
+            codeEditorContextMenu.Items[3].Enabled = codeEditor.CanPaste(DataFormats.GetFormat(DataFormats.Text));
+        }
+
+        private void OnEditorContextMenuCopyClick(object sender, EventArgs e)
+        {
+            codeEditor.Copy();
+        }
+
+        private void OnEditorContextMenuCutClick(object sender, EventArgs e)
+        {
+            codeEditor.Cut();
+        }
+
+        private void OnEditorContextMenuPasteClick(object sender, EventArgs e)
+        {
+            codeEditor.Paste();
+        }
         private void OnCodeChanged(object sender, EventArgs e)
         {
-
             Helpers.SetRichTextHighlight(codeEditor);
             if (hostsTree.SelectedNode == null || hostsTree.SelectedNode.Index == 0) return;
             var host = Settings.Default.hosts[hostsTree.SelectedNode.Index - 1];

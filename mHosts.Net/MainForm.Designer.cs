@@ -59,6 +59,7 @@ namespace mHosts.Net
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.trayIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.processRefreshDNS = new System.Diagnostics.Process();
+            this.importHostDialog = new System.Windows.Forms.OpenFileDialog();
             toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBar.SuspendLayout();
@@ -143,6 +144,7 @@ namespace mHosts.Net
             this.导入IToolStripMenuItem.Name = "导入IToolStripMenuItem";
             this.导入IToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.导入IToolStripMenuItem.Text = "导入(&I)";
+            this.导入IToolStripMenuItem.Click += new System.EventHandler(this.OnImportMenuItemClick);
             // 
             // toolStripSeparator4
             // 
@@ -326,6 +328,11 @@ namespace mHosts.Net
             this.processRefreshDNS.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
             this.processRefreshDNS.SynchronizingObject = this;
             // 
+            // importHostDialog
+            // 
+            this.importHostDialog.Filter = "mHosts配置文件|settings.json|JSON文件|*.json|Hosts文件|hosts";
+            this.importHostDialog.Title = "选择要导入的文件";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -360,10 +367,14 @@ namespace mHosts.Net
 
         private System.Windows.Forms.RichTextBox codeEditor;
         private System.Windows.Forms.ContextMenuStrip codeEditorContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem editorContextMenuCopy;
+        private System.Windows.Forms.ToolStripMenuItem editorContextMenuCut;
+        private System.Windows.Forms.ToolStripMenuItem editorContextMenuPaste;
         private System.Windows.Forms.ToolStripMenuItem editorContextMenuSelectAll;
         private System.Windows.Forms.ToolStripMenuItem fileMenu;
         private System.Windows.Forms.ToolStripMenuItem helpMenu;
         private System.Windows.Forms.TreeView hostsTree;
+        private System.Windows.Forms.OpenFileDialog importHostDialog;
         private System.Windows.Forms.MenuStrip menuBar;
         private System.Windows.Forms.ToolStripMenuItem menuItemAbout;
         private System.Windows.Forms.ToolStripMenuItem menuItemCheckUpdate;
@@ -378,11 +389,8 @@ namespace mHosts.Net
         private System.Windows.Forms.NotifyIcon trayIcon;
         private System.Windows.Forms.ContextMenuStrip trayIconMenu;
         private System.Windows.Forms.ToolStripMenuItem 导入IToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editorContextMenuCopy;
-        private System.Windows.Forms.ToolStripMenuItem editorContextMenuCut;
         private System.Windows.Forms.ToolStripMenuItem 退出EToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 新建NToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editorContextMenuPaste;
 
         #endregion
     }

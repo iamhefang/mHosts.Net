@@ -1,4 +1,7 @@
 ﻿using mHosts.Net.entities;
+using mHosts.Net.Properties;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,14 +9,34 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
-using mHosts.Net.Properties;
 
 namespace mHosts.Net
 {
     internal static class Helpers
     {
+        public static Host[] ParseOldHosts(string json)
+        {
+            var obj = JsonConvert.DeserializeObject(json);
+            if (!(obj is JObject))
+            {
+                return new Host[0];
+            }
+
+            var hosts = (obj as JObject)["hosts"] as JArray;
+
+            return (hosts ?? throw new InvalidOperationException()).Select(host => new Host
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = host["name"]!.Value<string>(),
+                ReadOnly = host["readOnly"]!.Value<bool>(),
+                AlwaysApply = host["alwaysApply"]!.Value<bool>(),
+                Url = host["url"]!.Value<string>(),
+                Content = host["content"]!.Value<string>(),
+                Icon = host["icon"]!.Value<string>()
+            }).ToArray();
+        }
+
         public static readonly Dictionary<string, Bitmap> ImgMap = new Dictionary<string, Bitmap>
         {
             {"logo", Resources.logo},
@@ -120,10 +143,8 @@ namespace mHosts.Net
 
         public static string ReadText(string path)
         {
-            using (var stream = File.OpenText(path))
-            {
-                return stream.ReadToEnd().Replace("\n", Environment.NewLine);
-            }
+            using var stream = File.OpenText(path);
+            return stream.ReadToEnd();//.Replace("\n", Environment.NewLine);
         }
     }
 }

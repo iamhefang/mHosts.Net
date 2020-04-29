@@ -27,7 +27,11 @@ namespace mHosts.Net
                 return;
             }
 
-            ApplyHosts2System(host);
+            var res = ApplyHosts2System(host);
+            if (res)
+            {
+                hostsTree.SelectedNode = hostsTree.Nodes[0];
+            }
         }
     }
 }

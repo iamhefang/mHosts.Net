@@ -2,6 +2,7 @@ using mHosts.Net.Properties;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using mHosts.Net.entities;
 
@@ -28,17 +29,10 @@ namespace mHosts.Net
         }
 
 
-        private void ApplyHosts2System(Host host)
+        private bool ApplyHosts2System(Host host)
         {
             try
             {
-                if (File.GetAttributes(Settings.Default.hostsPath) == FileAttributes.ReadOnly)
-                {
-                    MessageBox.Show(@"请尝试以管理员身份重新打开本软件后重试", @"Hosts文件不可写", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // File.GetAccessControl(Settings.Default.hostsPath).GetAccessRules()
                 var hostLines = Helpers.MergeHosts(host);
                 Console.WriteLine(hostLines);
                 File.WriteAllText(Settings.Default.hostsPath, string.Join("\n", hostLines));
@@ -69,6 +63,7 @@ namespace mHosts.Net
                 }
 
                 trayIcon.ShowBalloonTip(2000, "操作成功", msg, ToolTipIcon.Info);
+                return true;
             }
             catch (Exception e)
             {
@@ -77,6 +72,7 @@ namespace mHosts.Net
                     @"写文件时出错",
                     MessageBoxButtons.OK, MessageBoxIcon.Error
                 );
+                return false;
             }
         }
 
@@ -95,31 +91,51 @@ namespace mHosts.Net
             Environment.Exit(0);
         }
 
-        private void OnEditorContextMenuSelectAllClick(object sender, EventArgs e)
+        private void OnImportMenuItemClick(object sender, EventArgs e)
         {
-            codeEditor.SelectAll();
-        }
-
-        private void OnEditorContextMenuOpening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            codeEditorContextMenu.Items[1].Enabled = codeEditor.SelectionLength != 0;
-            codeEditorContextMenu.Items[2].Enabled = !codeEditor.ReadOnly && codeEditor.SelectionLength != 0;
-            codeEditorContextMenu.Items[3].Enabled = codeEditor.CanPaste(DataFormats.GetFormat(DataFormats.Text));
-        }
-
-        private void OnEditorContextMenuCopyClick(object sender, EventArgs e)
-        {
-            codeEditor.Copy();
-        }
-
-        private void OnEditorContextMenuCutClick(object sender, EventArgs e)
-        {
-            codeEditor.Cut();
-        }
-
-        private void OnEditorContextMenuPasteClick(object sender, EventArgs e)
-        {
-            codeEditor.Paste();
+            try
+            {
+                var result = importHostDialog.ShowDialog();
+                if (result != DialogResult.OK) return;
+                var count = 0;
+                if (importHostDialog.FileName.EndsWith("settings.json"))
+                {
+                    using var stream = importHostDialog.OpenFile();
+                    using var reader = new StreamReader(stream, Encoding.UTF8);
+                    var json = reader.ReadToEnd();
+                    var hosts = Helpers.ParseOldHosts(json);
+                    count = hosts.Length;
+                    Settings.Default.hosts.AddRange(hosts);
+                }
+                else if (importHostDialog.FileName.EndsWith("hosts"))
+                {
+                    using var stream = importHostDialog.OpenFile();
+                    using var reader = new StreamReader(stream, Encoding.UTF8);
+                    Settings.Default.hosts.Add(new Host
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Name = "导入的Hosts",
+                        Active = false,
+                        AlwaysApply = false,
+                        Content = reader.ReadToEnd(),
+                        LastUpdateTime = DateTime.Now,
+                        Url = null,
+                        Icon = "logo"
+                    });
+                    count = 1;
+                }
+                MessageBox.Show(
+                    @$"成功导入{count}个Hosts",
+                    @"导入成功",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+                InitHostsTree();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(@"请检查导入的文件是否是mHosts导出的文件", @"导入Hosts出错", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
