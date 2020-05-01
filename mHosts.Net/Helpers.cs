@@ -55,7 +55,7 @@ namespace mHosts.Net
             {"windows", Resources.windows}
         };
 
-        public static string[] MergeHosts(Host host2Merge)
+        public static string[] MergeHosts()
         {
             var ass = Assembly.GetExecutingAssembly().GetName();
 
@@ -64,15 +64,11 @@ namespace mHosts.Net
             {
                 $"# Hosts Apply by {ass.Name} v{ass.Version} {DateTime.Now}"
             };
-            foreach (var host in hosts.Where(host => host.AlwaysApply))
+            foreach (var host in hosts.Where(host => host.Active))
             {
-                lines.InsertRange(1, host.Content.Split('\n'));
-                lines.Insert(1, $"\n#----------- {host.Name} -----------");
+                lines.Add($"\n#----------- {host.Name} -----------");
+                lines.AddRange(host.Content.Split('\n'));
             }
-
-            lines.Add($"\n#----------- {host2Merge.Name} -----------");
-            lines.AddRange(host2Merge.Content.Split('\n'));
-
             for (var i = 0; i < lines.Count; i++)
             {
                 lines[i] = lines[i].Trim();
@@ -144,7 +140,7 @@ namespace mHosts.Net
         public static string ReadText(string path)
         {
             using var stream = File.OpenText(path);
-            return stream.ReadToEnd();//.Replace("\n", Environment.NewLine);
+            return stream.ReadToEnd(); //.Replace("\n", Environment.NewLine);
         }
     }
 }

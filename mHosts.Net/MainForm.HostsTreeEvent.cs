@@ -16,22 +16,8 @@ namespace mHosts.Net
         private void OnHostDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             var host = Settings.Default.hosts[e.Node.Index - 1];
-            if (host.AlwaysApply)
-            {
-                MessageBox.Show(
-                    @"该Hosts是共公Hosts，在设置其他Hosts时总会生效，无需手动设置",
-                    @"无需手动设置",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-                return;
-            }
-
-            var res = ApplyHosts2System(host);
-            if (res)
-            {
-                hostsTree.SelectedNode = hostsTree.Nodes[0];
-            }
+            e.Node.Checked = host.Active = !host.Active;
+            ApplyHosts2System();
         }
     }
 }

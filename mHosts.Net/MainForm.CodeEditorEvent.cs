@@ -16,6 +16,7 @@ namespace mHosts.Net
             codeEditorContextMenu.Items[1].Enabled = codeEditor.SelectionLength != 0;
             codeEditorContextMenu.Items[2].Enabled = !codeEditor.ReadOnly && codeEditor.SelectionLength != 0;
             codeEditorContextMenu.Items[3].Enabled = codeEditor.CanPaste(DataFormats.GetFormat(DataFormats.Text));
+            codeEditorContextMenu.Items[4].Enabled = codeEditor.CanUndo;
         }
 
         private void OnEditorContextMenuCopyClick(object sender, EventArgs e)
@@ -40,6 +41,10 @@ namespace mHosts.Net
             host.Content = codeEditor.Text;
         }
 
+        private void OnContextMenuItemUndoClick(object sender, EventArgs e)
+        {
+            codeEditor.Undo();
+        }
         private void OnCodeEditorKeyUp(object sender, KeyEventArgs e)
         {
             if (!e.Control || e.KeyCode != Keys.OemQuestion) return;

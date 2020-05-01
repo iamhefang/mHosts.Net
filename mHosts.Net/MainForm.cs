@@ -29,11 +29,11 @@ namespace mHosts.Net
         }
 
 
-        private bool ApplyHosts2System(Host host)
+        private bool ApplyHosts2System()
         {
             try
             {
-                var hostLines = Helpers.MergeHosts(host);
+                var hostLines = Helpers.MergeHosts();
                 Console.WriteLine(hostLines);
                 File.WriteAllText(Settings.Default.hostsPath, string.Join("\n", hostLines));
                 Settings.Default.hosts.ForEach(item =>
@@ -43,7 +43,6 @@ namespace mHosts.Net
                         item.Active = false;
                     }
                 });
-                host.Active = true;
                 var res = DoRefreshDns();
                 var msg = "Hosts已成功应用到系统";
 

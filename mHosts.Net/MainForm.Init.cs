@@ -1,7 +1,8 @@
-﻿using System.Drawing;
-using System.Linq;
+﻿using System;
+using System.Drawing;
 using mHosts.Net.Properties;
 using System.Windows.Forms;
+using mHosts.Net.entities;
 
 namespace mHosts.Net
 {
@@ -17,16 +18,22 @@ namespace mHosts.Net
                 {
                     Text = host.Name,
                     Checked = host.AlwaysApply || host.Active,
-                    Enabled = !host.AlwaysApply
+                    Enabled = !host.AlwaysApply,
+                    Tag = host
                 };
-                item.Click += (sender, e) =>
-                {
-                    ApplyHosts2System(host);
-                };
+                item.Click += OnHostMenuItemClick;
                 items[i] = item;
             }
 
             return items;
+        }
+
+        private void OnHostMenuItemClick(object sender,EventArgs e)
+        {
+            var menuItem = (ToolStripMenuItem) sender;
+            var host = (Host) menuItem.Tag;
+            host.Active = !host.Active;
+            ApplyHosts2System();
         }
 
         private void InitHostsTree()
@@ -37,18 +44,78 @@ namespace mHosts.Net
             {
                 hostsTree.ImageList.Images.Add(bitmap.Key, bitmap.Value);
             }
-            hostsTree.Nodes.Add("system-hosts", "当前系统", "windows");
+
+            hostsTree.Nodes.Add("system-hosts", Resources.StrCurrentSystem, "windows");
             codeEditor.Text = Helpers.ReadText(Settings.Default.hostsPath);
             foreach (var host in Settings.Default.hosts)
             {
                 var node = hostsTree.Nodes.Add(host.Id, host.Name, host.Icon ?? "logo");
+                node.ContextMenuStrip = new ContextMenuStrip
+                {
+                    Tag = host,
+                    Items =
+                    {
+                        new ToolStripMenuItem
+                        {
+                            Name = "active",
+                            Text = Resources.StrSet2Current,
+                            ShortcutKeyDisplayString = Resources.StrDoubleClick,
+                            Tag = host
+                        },
+                        new ToolStripMenuItem
+                        {
+                            Name = "edit",
+                            Text = Resources.StrEdit,
+                            Tag = host
+                        },
+                        new ToolStripMenuItem
+                        {
+                            Name = "delete",
+                            Text = Resources.StrDelete,
+                            ShortcutKeys = Keys.Delete,
+                            Tag = host
+                        },
+                        new ToolStripMenuItem
+                        {
+                            Name = "export",
+                            Text = Resources.StrExport,
+                            Tag = host
+                        }
+                    }
+                };
+                foreach (ToolStripItem menuItem in node.ContextMenuStrip.Items)
+                {
+                    menuItem.Click += OnTreeContextMenuClick;
+                }
+
                 node.Tag = host;
                 if (!host.Active && !host.AlwaysApply) continue;
                 node.NodeFont = new Font(hostsTree.Font.FontFamily, hostsTree.Font.Size, FontStyle.Bold);
                 node.ForeColor = Color.CornflowerBlue;
             }
-            statusLabelHostsCount.Text = $@"当前共有{Settings.Default.hosts.Count}个规则";
+
+            statusLabelHostsCount.Text = string.Format(Resources.StrHostsCount, Settings.Default.hosts.Count);
         }
+
+        private void OnTreeContextMenuClick(object sender, EventArgs e)
+        {
+            var menu = (ToolStripMenuItem) sender;
+            var host = (Host) menu.Tag;
+            switch (menu.Name)
+            {
+                case "active":
+                    host.Active = !host.Active;
+                    ApplyHosts2System();
+                    break;
+                case "delete":
+                    break;
+                case "edit":
+                    break;
+                case "export":
+                    break;
+            }
+        }
+
         private void InitCodeEditor()
         {
             //var labelLineNumber = new Label
@@ -81,7 +148,6 @@ namespace mHosts.Net
             newTool.Click += OnNewToolMenuItemClick;
 
             toolMenu.DropDownItems.Add(newTool);
-
         }
 
         private void InitTrayMenu(ToolStrip menu)

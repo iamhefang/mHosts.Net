@@ -212,4 +212,25 @@
   <data name="windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\win32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="StrDoubleClick" xml:space="preserve">
+    <value>双击</value>
+  </data>
+  <data name="StrSet2Current" xml:space="preserve">
+    <value>设置为当前</value>
+  </data>
+  <data name="StrEdit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="StrDelete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="StrExport" xml:space="preserve">
+    <value>导出</value>
+  </data>
+  <data name="StrCurrentSystem" xml:space="preserve">
+    <value>系统当前</value>
+  </data>
+  <data name="StrHostsCount" xml:space="preserve">
+    <value>当前共有{0}个规则</value>
+  </data>
 </root>
