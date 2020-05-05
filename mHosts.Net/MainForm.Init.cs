@@ -28,7 +28,7 @@ namespace mHosts.Net
             return items;
         }
 
-        private void OnHostMenuItemClick(object sender,EventArgs e)
+        private void OnHostMenuItemClick(object sender, EventArgs e)
         {
             var menuItem = (ToolStripMenuItem) sender;
             var host = (Host) menuItem.Tag;
@@ -162,6 +162,12 @@ namespace mHosts.Net
             var toggle = new ToolStripMenuItem(@"显示/隐藏主窗口");
             toggle.Click += OnToggleMenuItemClick;
 
+            var serverStatus = new ToolStripMenuItem(Server.IsBound ? "服务已启动" : "服务未启动")
+            {
+                Checked = Server.IsBound,
+                Enabled = false
+            };
+
             var newHosts = new ToolStripMenuItem(@"新建Hosts");
             newHosts.Click += OnMenuItemNewHostsClick;
 
@@ -176,6 +182,7 @@ namespace mHosts.Net
 
             menu.Items.AddRange(new ToolStripItem[]
             {
+                serverStatus,
                 toggle,
                 new ToolStripSeparator()
             });

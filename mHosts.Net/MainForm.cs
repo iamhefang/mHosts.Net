@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using mHosts.Net.entities;
+using mHosts.Net.forms;
+using mHosts.Net.server;
 
 namespace mHosts.Net
 {
@@ -12,8 +14,11 @@ namespace mHosts.Net
     {
         private readonly AssemblyName _assemblyName = Assembly.GetExecutingAssembly().GetName();
 
+        public readonly ProxyServer Server = new ProxyServer();
+
         public MainForm()
         {
+            Server.OnStart();
             InitializeComponent();
             InitCodeEditor();
             Program.InitSettings();
@@ -135,6 +140,11 @@ namespace mHosts.Net
             {
                 MessageBox.Show(@"请检查导入的文件是否是mHosts导出的文件", @"导入Hosts出错", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void OnMenuItemLogClick(object sender, EventArgs e)
+        {
+            LogForm.ShowForm();
         }
     }
 }

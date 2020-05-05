@@ -11,5 +11,8 @@
     <Setting Name="hostsPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Windows\System32\drivers\etc\hosts</Value>
     </Setting>
+    <Setting Name="logLevel" Type="mHosts.Net.forms.LogLevel" Scope="User">
+      <Value Profile="(Default)">WARNING</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
