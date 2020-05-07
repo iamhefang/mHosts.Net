@@ -32,8 +32,7 @@ namespace mHosts.Net
         {
             var menuItem = (ToolStripMenuItem) sender;
             var host = (Host) menuItem.Tag;
-            host.Active = !host.Active;
-            ApplyHosts2System();
+            ApplyHosts2System(host);
         }
 
         private void InitHostsTree()
@@ -46,10 +45,17 @@ namespace mHosts.Net
             }
 
             hostsTree.Nodes.Add("system-hosts", Resources.StrCurrentSystem, "windows");
+            var nodeCommon = hostsTree.Nodes.Add("common-hosts", Resources.StrCommon, "logo");
+            var nodeCustom = hostsTree.Nodes.Add("custom-hosts", Resources.StrCustom, "logo");
             codeEditor.Text = Helpers.ReadText(Settings.Default.hostsPath);
             foreach (var host in Settings.Default.hosts)
             {
-                var node = hostsTree.Nodes.Add(host.Id, host.Name, host.Icon ?? "logo");
+                var node = (host.AlwaysApply ? nodeCommon : nodeCustom).Nodes.Add(
+                    host.Id, 
+                    host.Name,
+                    host.Icon ?? "logo"
+                );
+                node.Checked = host.Active || host.AlwaysApply;
                 node.ContextMenuStrip = new ContextMenuStrip
                 {
                     Tag = host,
@@ -60,6 +66,7 @@ namespace mHosts.Net
                             Name = "active",
                             Text = Resources.StrSet2Current,
                             ShortcutKeyDisplayString = Resources.StrDoubleClick,
+                            Enabled = !host.AlwaysApply,
                             Tag = host
                         },
                         new ToolStripMenuItem
@@ -95,6 +102,7 @@ namespace mHosts.Net
             }
 
             statusLabelHostsCount.Text = string.Format(Resources.StrHostsCount, Settings.Default.hosts.Count);
+            hostsTree.ExpandAll();
         }
 
         private void OnTreeContextMenuClick(object sender, EventArgs e)
@@ -104,8 +112,7 @@ namespace mHosts.Net
             switch (menu.Name)
             {
                 case "active":
-                    host.Active = !host.Active;
-                    ApplyHosts2System();
+                    ApplyHosts2System(host);
                     break;
                 case "delete":
                     break;
@@ -116,35 +123,17 @@ namespace mHosts.Net
             }
         }
 
-        private void InitCodeEditor()
-        {
-            //var labelLineNumber = new Label
-            //{
-            //    Name = "labelLineNumber",
-            //    Top = 0,
-            //    TextAlign = ContentAlignment.TopRight,
-            //    Width = 40,
-            //    Text = "1",
-            //    Font = codeEditor.Font,
-            //    Height = codeEditor.Height,
-            //    BackColor = Color.Gray,
-            //    BorderStyle = BorderStyle.None
-            //};
-            //codeEditor.Controls.Add(labelLineNumber);
-            //codeEditor.SelectionIndent = 40;
-        }
-
         private void InitToolMenu()
         {
             toolMenu.DropDownItems.Clear();
 
-            var refreshDns = new ToolStripMenuItem(@"刷新DNS缓存");
+            var refreshDns = new ToolStripMenuItem(Resources.StrRefreshDNS);
             refreshDns.Click += OnMenuRefreshDNSClick;
 
             toolMenu.DropDownItems.Add(refreshDns);
             toolMenu.DropDownItems.AddRange(Helpers.MakeToolMenu(Settings.Default.tools.ToArray()));
 
-            var newTool = new ToolStripMenuItem("添加新工具(&A)");
+            var newTool = new ToolStripMenuItem(Resources.StrAddNewTool);
             newTool.Click += OnNewToolMenuItemClick;
 
             toolMenu.DropDownItems.Add(newTool);
@@ -159,25 +148,26 @@ namespace mHosts.Net
                 Enabled = false
             });
 
-            var toggle = new ToolStripMenuItem(@"显示/隐藏主窗口");
+            var toggle = new ToolStripMenuItem(Resources.StrToggleMainForm);
             toggle.Click += OnToggleMenuItemClick;
 
-            var serverStatus = new ToolStripMenuItem(Server.IsBound ? "服务已启动" : "服务未启动")
-            {
-                Checked = Server.IsBound,
-                Enabled = false
-            };
+            var serverStatus =
+                new ToolStripMenuItem(Server.IsBound ? Resources.StrServiceIsBound : Resources.StrServiceNotBound)
+                {
+                    Checked = Server.IsBound,
+                    Enabled = false
+                };
 
-            var newHosts = new ToolStripMenuItem(@"新建Hosts");
+            var newHosts = new ToolStripMenuItem(Resources.StrNewHosts);
             newHosts.Click += OnMenuItemNewHostsClick;
 
-            var refreshDns = new ToolStripMenuItem(@"刷新DNS缓存");
+            var refreshDns = new ToolStripMenuItem(Resources.StrRefreshDNS);
             refreshDns.Click += OnMenuRefreshDNSClick;
 
-            var about = new ToolStripMenuItem(@"关于");
+            var about = new ToolStripMenuItem(Resources.StrAbout);
             about.Click += OnAboutMenuItemClick;
 
-            var exit = new ToolStripMenuItem(@"退出");
+            var exit = new ToolStripMenuItem(Resources.StrExit);
             exit.Click += OnExitMenuItemClick;
 
             menu.Items.AddRange(new ToolStripItem[]

@@ -39,10 +39,11 @@ namespace mHosts.Net
             this.statusLabelHostsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.新建NToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.导入IToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileMenuItemNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileMenuItemImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileMenuItemExport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.退出EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemConfig = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +68,7 @@ namespace mHosts.Net
             this.设置为当前HostsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportHostDialog = new System.Windows.Forms.SaveFileDialog();
             toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -84,6 +86,7 @@ namespace mHosts.Net
             // 
             toolStripStatusLabel1.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             toolStripStatusLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new System.Drawing.Size(223, 24);
             toolStripStatusLabel1.Text = "编辑自动保存，双击应用到系统";
@@ -92,13 +95,13 @@ namespace mHosts.Net
             // 
             toolStripStatusLabel3.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            toolStripStatusLabel3.Size = new System.Drawing.Size(252, 21);
+            toolStripStatusLabel3.Size = new System.Drawing.Size(313, 24);
             toolStripStatusLabel3.Text = "内容修复自动保存，双击左侧节点应用到系统";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            toolStripSeparator1.Size = new System.Drawing.Size(170, 6);
             // 
             // statusBar
             // 
@@ -107,16 +110,16 @@ namespace mHosts.Net
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabelHostsCount,
             toolStripStatusLabel3});
-            this.statusBar.Location = new System.Drawing.Point(0, 574);
+            this.statusBar.Location = new System.Drawing.Point(0, 570);
             this.statusBar.Name = "statusBar";
             this.statusBar.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusBar.Size = new System.Drawing.Size(900, 26);
+            this.statusBar.Size = new System.Drawing.Size(900, 30);
             this.statusBar.TabIndex = 0;
             // 
             // statusLabelHostsCount
             // 
             this.statusLabelHostsCount.Name = "statusLabelHostsCount";
-            this.statusLabelHostsCount.Size = new System.Drawing.Size(72, 21);
+            this.statusLabelHostsCount.Size = new System.Drawing.Size(90, 24);
             this.statusLabelHostsCount.Text = "共0个Hosts";
             // 
             // menuBar
@@ -130,51 +133,59 @@ namespace mHosts.Net
             this.menuBar.Location = new System.Drawing.Point(0, 0);
             this.menuBar.Name = "menuBar";
             this.menuBar.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-            this.menuBar.Size = new System.Drawing.Size(900, 27);
+            this.menuBar.Size = new System.Drawing.Size(900, 30);
             this.menuBar.TabIndex = 1;
             this.menuBar.Text = "menuStrip1";
             // 
             // fileMenu
             // 
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新建NToolStripMenuItem,
-            this.导入IToolStripMenuItem,
+            this.fileMenuItemNew,
+            this.fileMenuItemImport,
+            this.fileMenuItemExport,
             this.toolStripSeparator4,
-            this.退出EToolStripMenuItem});
+            this.fileMenuItemExit});
             this.fileMenu.Name = "fileMenu";
-            this.fileMenu.Size = new System.Drawing.Size(58, 21);
+            this.fileMenu.Size = new System.Drawing.Size(71, 24);
             this.fileMenu.Text = "文件(&F)";
             // 
-            // 新建NToolStripMenuItem
+            // fileMenuItemNew
             // 
-            this.新建NToolStripMenuItem.Name = "新建NToolStripMenuItem";
-            this.新建NToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.新建NToolStripMenuItem.Text = "新建(&N)";
-            this.新建NToolStripMenuItem.Click += new System.EventHandler(this.OnMenuItemNewHostsClick);
+            this.fileMenuItemNew.Name = "fileMenuItemNew";
+            this.fileMenuItemNew.Size = new System.Drawing.Size(144, 26);
+            this.fileMenuItemNew.Text = "新建(&N)";
+            this.fileMenuItemNew.Click += new System.EventHandler(this.OnMenuItemNewHostsClick);
             // 
-            // 导入IToolStripMenuItem
+            // fileMenuItemImport
             // 
-            this.导入IToolStripMenuItem.Name = "导入IToolStripMenuItem";
-            this.导入IToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.导入IToolStripMenuItem.Text = "导入(&I)";
-            this.导入IToolStripMenuItem.Click += new System.EventHandler(this.OnImportMenuItemClick);
+            this.fileMenuItemImport.Name = "fileMenuItemImport";
+            this.fileMenuItemImport.Size = new System.Drawing.Size(144, 26);
+            this.fileMenuItemImport.Text = "导入(&I)";
+            this.fileMenuItemImport.Click += new System.EventHandler(this.OnImportMenuItemClick);
+            // 
+            // fileMenuItemExport
+            // 
+            this.fileMenuItemExport.Name = "fileMenuItemExport";
+            this.fileMenuItemExport.Size = new System.Drawing.Size(144, 26);
+            this.fileMenuItemExport.Text = "导出(&E)";
+            this.fileMenuItemExport.Click += new System.EventHandler(this.OnFIleMenuExportClick);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(115, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(141, 6);
             // 
-            // 退出EToolStripMenuItem
+            // fileMenuItemExit
             // 
-            this.退出EToolStripMenuItem.Name = "退出EToolStripMenuItem";
-            this.退出EToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.退出EToolStripMenuItem.Text = "退出(&E)";
-            this.退出EToolStripMenuItem.Click += new System.EventHandler(this.OnExitMenuItemClick);
+            this.fileMenuItemExit.Name = "fileMenuItemExit";
+            this.fileMenuItemExit.Size = new System.Drawing.Size(144, 26);
+            this.fileMenuItemExit.Text = "退出(&Q)";
+            this.fileMenuItemExit.Click += new System.EventHandler(this.OnExitMenuItemClick);
             // 
             // toolMenu
             // 
             this.toolMenu.Name = "toolMenu";
-            this.toolMenu.Size = new System.Drawing.Size(59, 21);
+            this.toolMenu.Size = new System.Drawing.Size(72, 24);
             this.toolMenu.Text = "工具(&T)";
             // 
             // helpMenu
@@ -187,48 +198,48 @@ namespace mHosts.Net
             this.menuItemCheckUpdate,
             this.menuItemAbout});
             this.helpMenu.Name = "helpMenu";
-            this.helpMenu.Size = new System.Drawing.Size(61, 21);
+            this.helpMenu.Size = new System.Drawing.Size(75, 24);
             this.helpMenu.Text = "帮助(&H)";
             // 
             // menuItemConfig
             // 
             this.menuItemConfig.Name = "menuItemConfig";
-            this.menuItemConfig.Size = new System.Drawing.Size(180, 22);
+            this.menuItemConfig.Size = new System.Drawing.Size(173, 26);
             this.menuItemConfig.Text = "首选项(&P)";
             this.menuItemConfig.Click += new System.EventHandler(this.OnMenuItemConfigClick);
             // 
             // menuItemLog
             // 
             this.menuItemLog.Name = "menuItemLog";
-            this.menuItemLog.Size = new System.Drawing.Size(180, 22);
+            this.menuItemLog.Size = new System.Drawing.Size(173, 26);
             this.menuItemLog.Text = "查看日志(&L)";
             this.menuItemLog.Click += new System.EventHandler(this.OnMenuItemLogClick);
             // 
             // menuItemDoc
             // 
             this.menuItemDoc.Name = "menuItemDoc";
-            this.menuItemDoc.Size = new System.Drawing.Size(180, 22);
+            this.menuItemDoc.Size = new System.Drawing.Size(173, 26);
             this.menuItemDoc.Text = "帮助文档(&D)";
             this.menuItemDoc.Click += new System.EventHandler(this.OnMenuItemDocClick);
             // 
             // menuItemCheckUpdate
             // 
             this.menuItemCheckUpdate.Name = "menuItemCheckUpdate";
-            this.menuItemCheckUpdate.Size = new System.Drawing.Size(180, 22);
+            this.menuItemCheckUpdate.Size = new System.Drawing.Size(173, 26);
             this.menuItemCheckUpdate.Text = "检查更新(&C)";
             this.menuItemCheckUpdate.Click += new System.EventHandler(this.OnMenuItemCheckUpdateClick);
             // 
             // menuItemAbout
             // 
             this.menuItemAbout.Name = "menuItemAbout";
-            this.menuItemAbout.Size = new System.Drawing.Size(180, 22);
+            this.menuItemAbout.Size = new System.Drawing.Size(173, 26);
             this.menuItemAbout.Text = "关于(&A)";
             this.menuItemAbout.Click += new System.EventHandler(this.OnAboutMenuItemClick);
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 30);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -241,7 +252,7 @@ namespace mHosts.Net
             // 
             this.splitContainer1.Panel2.Controls.Add(this.codeEditor);
             this.splitContainer1.Panel2MinSize = 200;
-            this.splitContainer1.Size = new System.Drawing.Size(900, 547);
+            this.splitContainer1.Size = new System.Drawing.Size(900, 540);
             this.splitContainer1.SplitterDistance = 200;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -249,12 +260,10 @@ namespace mHosts.Net
             // 
             this.hostsTree.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.hostsTree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hostsTree.HideSelection = false;
-            this.hostsTree.HotTracking = true;
             this.hostsTree.Location = new System.Drawing.Point(0, 0);
             this.hostsTree.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.hostsTree.Name = "hostsTree";
-            this.hostsTree.Size = new System.Drawing.Size(200, 547);
+            this.hostsTree.Size = new System.Drawing.Size(200, 540);
             this.hostsTree.TabIndex = 0;
             this.hostsTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeNodeSelect);
             this.hostsTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OnHostDoubleClick);
@@ -268,7 +277,7 @@ namespace mHosts.Net
             this.codeEditor.Location = new System.Drawing.Point(0, 0);
             this.codeEditor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.codeEditor.Name = "codeEditor";
-            this.codeEditor.Size = new System.Drawing.Size(696, 547);
+            this.codeEditor.Size = new System.Drawing.Size(696, 540);
             this.codeEditor.TabIndex = 0;
             this.codeEditor.Text = "";
             this.codeEditor.WordWrap = false;
@@ -285,14 +294,14 @@ namespace mHosts.Net
             this.editorContextMenuPaste,
             this.contextMenuUndo});
             this.codeEditorContextMenu.Name = "codeEditorContextMenu";
-            this.codeEditorContextMenu.Size = new System.Drawing.Size(146, 114);
+            this.codeEditorContextMenu.Size = new System.Drawing.Size(166, 124);
             this.codeEditorContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.OnEditorContextMenuOpening);
             // 
             // editorContextMenuSelectAll
             // 
             this.editorContextMenuSelectAll.Name = "editorContextMenuSelectAll";
             this.editorContextMenuSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.editorContextMenuSelectAll.Size = new System.Drawing.Size(145, 22);
+            this.editorContextMenuSelectAll.Size = new System.Drawing.Size(165, 24);
             this.editorContextMenuSelectAll.Text = "全选";
             this.editorContextMenuSelectAll.Click += new System.EventHandler(this.OnEditorContextMenuSelectAllClick);
             // 
@@ -300,7 +309,7 @@ namespace mHosts.Net
             // 
             this.editorContextMenuCopy.Name = "editorContextMenuCopy";
             this.editorContextMenuCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.editorContextMenuCopy.Size = new System.Drawing.Size(145, 22);
+            this.editorContextMenuCopy.Size = new System.Drawing.Size(165, 24);
             this.editorContextMenuCopy.Text = "复制";
             this.editorContextMenuCopy.Click += new System.EventHandler(this.OnEditorContextMenuCopyClick);
             // 
@@ -308,7 +317,7 @@ namespace mHosts.Net
             // 
             this.editorContextMenuCut.Name = "editorContextMenuCut";
             this.editorContextMenuCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.editorContextMenuCut.Size = new System.Drawing.Size(145, 22);
+            this.editorContextMenuCut.Size = new System.Drawing.Size(165, 24);
             this.editorContextMenuCut.Text = "剪切";
             this.editorContextMenuCut.Click += new System.EventHandler(this.OnEditorContextMenuCutClick);
             // 
@@ -316,7 +325,7 @@ namespace mHosts.Net
             // 
             this.editorContextMenuPaste.Name = "editorContextMenuPaste";
             this.editorContextMenuPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.editorContextMenuPaste.Size = new System.Drawing.Size(145, 22);
+            this.editorContextMenuPaste.Size = new System.Drawing.Size(165, 24);
             this.editorContextMenuPaste.Text = "粘贴";
             this.editorContextMenuPaste.Click += new System.EventHandler(this.OnEditorContextMenuPasteClick);
             // 
@@ -324,7 +333,7 @@ namespace mHosts.Net
             // 
             this.contextMenuUndo.Name = "contextMenuUndo";
             this.contextMenuUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.contextMenuUndo.Size = new System.Drawing.Size(145, 22);
+            this.contextMenuUndo.Size = new System.Drawing.Size(165, 24);
             this.contextMenuUndo.Text = "撤销";
             this.contextMenuUndo.Click += new System.EventHandler(this.OnContextMenuItemUndoClick);
             // 
@@ -372,31 +381,36 @@ namespace mHosts.Net
             this.编辑ToolStripMenuItem,
             this.删除ToolStripMenuItem});
             this.hostTreeContextMenu.Name = "hostTreeContextMenu";
-            this.hostTreeContextMenu.Size = new System.Drawing.Size(202, 70);
+            this.hostTreeContextMenu.Size = new System.Drawing.Size(235, 76);
             // 
             // 设置为当前HostsToolStripMenuItem
             // 
             this.设置为当前HostsToolStripMenuItem.Name = "设置为当前HostsToolStripMenuItem";
             this.设置为当前HostsToolStripMenuItem.ShortcutKeyDisplayString = "双击";
-            this.设置为当前HostsToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.设置为当前HostsToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
             this.设置为当前HostsToolStripMenuItem.Text = "设置为当前Hosts";
             // 
             // 编辑ToolStripMenuItem
             // 
             this.编辑ToolStripMenuItem.Name = "编辑ToolStripMenuItem";
-            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
             this.编辑ToolStripMenuItem.Text = "编辑";
             // 
             // 删除ToolStripMenuItem
             // 
             this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
             this.删除ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
             this.删除ToolStripMenuItem.Text = "删除";
+            // 
+            // exportHostDialog
+            // 
+            this.exportHostDialog.Filter = "JSON文件|*.json";
+            this.exportHostDialog.Title = "文件保存位置";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 600);
             this.Controls.Add(this.splitContainer1);
@@ -444,6 +458,7 @@ namespace mHosts.Net
         private System.Windows.Forms.ToolStripMenuItem menuItemCheckUpdate;
         private System.Windows.Forms.ToolStripMenuItem menuItemConfig;
         private System.Windows.Forms.ToolStripMenuItem menuItemDoc;
+        private System.Windows.Forms.ToolStripMenuItem menuItemLog;
         private System.Diagnostics.Process processRefreshDNS;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.StatusStrip statusBar;
@@ -453,15 +468,16 @@ namespace mHosts.Net
         private System.Windows.Forms.NotifyIcon trayIcon;
         private System.Windows.Forms.ContextMenuStrip trayIconMenu;
         private System.Windows.Forms.ToolStripMenuItem 编辑ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 导入IToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileMenuItemImport;
         private System.Windows.Forms.ToolStripMenuItem 删除ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 设置为当前HostsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 退出EToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 新建NToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileMenuItemExit;
+        private System.Windows.Forms.ToolStripMenuItem fileMenuItemNew;
 
         #endregion
 
-        private ToolStripMenuItem menuItemLog;
+        private ToolStripMenuItem fileMenuItemExport;
+        private SaveFileDialog exportHostDialog;
     }
 }
 

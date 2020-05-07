@@ -242,11 +242,47 @@ namespace mHosts.Net.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 关于.
+        /// </summary>
+        internal static string StrAbout {
+            get {
+                return ResourceManager.GetString("StrAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 添加新工具(&amp;A).
+        /// </summary>
+        internal static string StrAddNewTool {
+            get {
+                return ResourceManager.GetString("StrAddNewTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 公共.
+        /// </summary>
+        internal static string StrCommon {
+            get {
+                return ResourceManager.GetString("StrCommon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 系统当前.
         /// </summary>
         internal static string StrCurrentSystem {
             get {
                 return ResourceManager.GetString("StrCurrentSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自定义.
+        /// </summary>
+        internal static string StrCustom {
+            get {
+                return ResourceManager.GetString("StrCustom", resourceCulture);
             }
         }
         
@@ -278,11 +314,47 @@ namespace mHosts.Net.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 退出.
+        /// </summary>
+        internal static string StrExit {
+            get {
+                return ResourceManager.GetString("StrExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 导出.
         /// </summary>
         internal static string StrExport {
             get {
                 return ResourceManager.GetString("StrExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 文件已保存到{0}.
+        /// </summary>
+        internal static string StrExportFileAt {
+            get {
+                return ResourceManager.GetString("StrExportFileAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 导出文件出错.
+        /// </summary>
+        internal static string StrExportFileError {
+            get {
+                return ResourceManager.GetString("StrExportFileError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 文件导出成功.
+        /// </summary>
+        internal static string StrExportSuccess {
+            get {
+                return ResourceManager.GetString("StrExportSuccess", resourceCulture);
             }
         }
         
@@ -296,11 +368,83 @@ namespace mHosts.Net.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 导入文件出错.
+        /// </summary>
+        internal static string StrImportFileError {
+            get {
+                return ResourceManager.GetString("StrImportFileError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to StrImportSuccess.
+        /// </summary>
+        internal static string StrImportSuccess {
+            get {
+                return ResourceManager.GetString("StrImportSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新建Hosts.
+        /// </summary>
+        internal static string StrNewHosts {
+            get {
+                return ResourceManager.GetString("StrNewHosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 请检查导入的文件是否是mHosts导出的文件.
+        /// </summary>
+        internal static string StrPleaseCheckTheFileIsMHostExported {
+            get {
+                return ResourceManager.GetString("StrPleaseCheckTheFileIsMHostExported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 刷新DNS缓存.
+        /// </summary>
+        internal static string StrRefreshDNS {
+            get {
+                return ResourceManager.GetString("StrRefreshDNS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 服务已启动.
+        /// </summary>
+        internal static string StrServiceIsBound {
+            get {
+                return ResourceManager.GetString("StrServiceIsBound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 服务未启动.
+        /// </summary>
+        internal static string StrServiceNotBound {
+            get {
+                return ResourceManager.GetString("StrServiceNotBound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 设置为当前.
         /// </summary>
         internal static string StrSet2Current {
             get {
                 return ResourceManager.GetString("StrSet2Current", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 显示/隐藏主窗口.
+        /// </summary>
+        internal static string StrToggleMainForm {
+            get {
+                return ResourceManager.GetString("StrToggleMainForm", resourceCulture);
             }
         }
         

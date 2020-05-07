@@ -1,5 +1,6 @@
 using mHosts.Net.Properties;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -7,6 +8,7 @@ using System.Windows.Forms;
 using mHosts.Net.entities;
 using mHosts.Net.forms;
 using mHosts.Net.server;
+using Newtonsoft.Json;
 
 namespace mHosts.Net
 {
@@ -20,7 +22,7 @@ namespace mHosts.Net
         {
             Server.OnStart();
             InitializeComponent();
-            InitCodeEditor();
+            exportHostDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             Program.InitSettings();
             InitTrayMenu(trayIconMenu);
             InitToolMenu();
@@ -34,23 +36,16 @@ namespace mHosts.Net
         }
 
 
-        private bool ApplyHosts2System()
+        private bool ApplyHosts2System(Host host)
         {
             try
             {
-                var hostLines = Helpers.MergeHosts();
-                Console.WriteLine(hostLines);
+                var hostLines = Helpers.MergeHosts(host);
                 File.WriteAllText(Settings.Default.hostsPath, string.Join("\n", hostLines));
-                Settings.Default.hosts.ForEach(item =>
-                {
-                    if (!item.AlwaysApply)
-                    {
-                        item.Active = false;
-                    }
-                });
                 var res = DoRefreshDns();
                 var msg = "Hosts已成功应用到系统";
-
+                host.Active = !host.Active;
+                InitHostsTree();
                 switch (res)
                 {
                     case RefreshDnsStatus.Success:
@@ -102,13 +97,15 @@ namespace mHosts.Net
                 var result = importHostDialog.ShowDialog();
                 if (result != DialogResult.OK) return;
                 var count = 0;
-                if (importHostDialog.FileName.EndsWith("settings.json"))
+                if (importHostDialog.FileName.EndsWith(".json"))
                 {
                     using var stream = importHostDialog.OpenFile();
                     using var reader = new StreamReader(stream, Encoding.UTF8);
                     var json = reader.ReadToEnd();
-                    var hosts = Helpers.ParseOldHosts(json);
-                    count = hosts.Length;
+                    var hosts = importHostDialog.FileName.EndsWith("settings.json")
+                        ? Helpers.ParseOldHosts(json)
+                        : JsonConvert.DeserializeObject<List<Host>>(json);
+                    count = hosts.Count;
                     Settings.Default.hosts.AddRange(hosts);
                 }
                 else if (importHostDialog.FileName.EndsWith("hosts"))
@@ -128,9 +125,10 @@ namespace mHosts.Net
                     });
                     count = 1;
                 }
+
                 MessageBox.Show(
                     @$"成功导入{count}个Hosts",
-                    @"导入成功",
+                    Resources.StrImportSuccess,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
@@ -138,7 +136,11 @@ namespace mHosts.Net
             }
             catch (Exception)
             {
-                MessageBox.Show(@"请检查导入的文件是否是mHosts导出的文件", @"导入Hosts出错", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    Resources.StrPleaseCheckTheFileIsMHostExported,
+                    Resources.StrImportFileError,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
