@@ -15,17 +15,14 @@ namespace mHosts.Net
 {
     internal static class Helpers
     {
-        public static Host[] ParseOldHosts(string json)
+        public static List<Host> ParseOldHosts(string json)
         {
+            var list = new List<Host>();
             var obj = JsonConvert.DeserializeObject(json);
-            if (!(obj is JObject))
-            {
-                return new Host[0];
-            }
+            if (!(obj is JObject jObject)) return list;
+            var hosts = jObject["hosts"] as JArray;
 
-            var hosts = (obj as JObject)["hosts"] as JArray;
-
-            return (hosts ?? throw new InvalidOperationException()).Select(host => new Host
+            list.AddRange((hosts ?? throw new Exception()).Select(host => new Host
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = host["name"]!.Value<string>(),
@@ -34,7 +31,8 @@ namespace mHosts.Net
                 Url = host["url"]!.Value<string>(),
                 Content = host["content"]!.Value<string>(),
                 Icon = host["icon"]!.Value<string>()
-            }).ToArray();
+            }));
+            return list;
         }
 
         public static readonly Dictionary<string, Bitmap> ImgMap = new Dictionary<string, Bitmap>
@@ -55,7 +53,7 @@ namespace mHosts.Net
             {"windows", Resources.windows}
         };
 
-        public static string[] MergeHosts()
+        public static string[] MergeHosts(Host clickedHost)
         {
             var ass = Assembly.GetExecutingAssembly().GetName();
 
@@ -64,11 +62,12 @@ namespace mHosts.Net
             {
                 $"# Hosts Apply by {ass.Name} v{ass.Version} {DateTime.Now}"
             };
-            foreach (var host in hosts.Where(host => host.Active))
+            foreach (var host in hosts.Where(host => host.Active || (host.Id == clickedHost.Id && !clickedHost.Active)))
             {
                 lines.Add($"\n#----------- {host.Name} -----------");
                 lines.AddRange(host.Content.Split('\n'));
             }
+
             for (var i = 0; i < lines.Count; i++)
             {
                 lines[i] = lines[i].Trim();

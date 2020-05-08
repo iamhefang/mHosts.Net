@@ -1,5 +1,6 @@
 ﻿using mHosts.Net.Properties;
 using System.Windows.Forms;
+using mHosts.Net.entities;
 
 namespace mHosts.Net
 {
@@ -15,9 +16,8 @@ namespace mHosts.Net
 
         private void OnHostDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            var host = Settings.Default.hosts[e.Node.Index - 1];
-            e.Node.Checked = host.Active = !host.Active;
-            ApplyHosts2System();
+            var node = (TreeView) sender;
+            if (node.Tag is Host host) ApplyHosts2System(host);
         }
     }
 }
