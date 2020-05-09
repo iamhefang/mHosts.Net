@@ -14,5 +14,8 @@
     <Setting Name="logLevel" Type="mHosts.Net.forms.LogLevel" Scope="User">
       <Value Profile="(Default)">WARNING</Value>
     </Setting>
+    <Setting Name="allowMutiHosts" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

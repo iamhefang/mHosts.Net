@@ -31,8 +31,11 @@ namespace mHosts.Net
         private void OnHostMenuItemClick(object sender, EventArgs e)
         {
             var menuItem = (ToolStripMenuItem) sender;
-            var host = (Host) menuItem.Tag;
-            ApplyHosts2System(host);
+            if (!(menuItem.Tag is Host host)) return;
+            if (ApplyHosts2System(host))
+            {
+                InitTrayMenu();
+            }
         }
 
         private void InitHostsTree()
@@ -51,7 +54,7 @@ namespace mHosts.Net
             foreach (var host in Settings.Default.hosts)
             {
                 var node = (host.AlwaysApply ? nodeCommon : nodeCustom).Nodes.Add(
-                    host.Id, 
+                    host.Id,
                     host.Name,
                     host.Icon ?? "logo"
                 );
@@ -139,10 +142,10 @@ namespace mHosts.Net
             toolMenu.DropDownItems.Add(newTool);
         }
 
-        private void InitTrayMenu(ToolStrip menu)
+        private void InitTrayMenu()
         {
-            menu.Items.Clear();
-            menu.Items.Add(new ToolStripMenuItem
+            trayIconMenu.Items.Clear();
+            trayIconMenu.Items.Add(new ToolStripMenuItem
             {
                 Text = $@"{_assemblyName.Name} v{_assemblyName.Version}",
                 Enabled = false
@@ -154,8 +157,8 @@ namespace mHosts.Net
             var serverStatus =
                 new ToolStripMenuItem(Server.IsBound ? Resources.StrServiceIsBound : Resources.StrServiceNotBound)
                 {
-                    Checked = Server.IsBound,
-                    Enabled = false
+                    Text = Server.IsBound ? $"127.0.0.1:{Server.Port}" : "代理服务未启动",
+                    Checked = Server.IsBound
                 };
 
             var newHosts = new ToolStripMenuItem(Resources.StrNewHosts);
@@ -170,21 +173,21 @@ namespace mHosts.Net
             var exit = new ToolStripMenuItem(Resources.StrExit);
             exit.Click += OnExitMenuItemClick;
 
-            menu.Items.AddRange(new ToolStripItem[]
+            trayIconMenu.Items.AddRange(new ToolStripItem[]
             {
                 serverStatus,
                 toggle,
                 new ToolStripSeparator()
             });
-            menu.Items.AddRange(MakeHostMenu());
-            menu.Items.AddRange(new ToolStripItem[]
+            trayIconMenu.Items.AddRange(MakeHostMenu());
+            trayIconMenu.Items.AddRange(new ToolStripItem[]
             {
                 newHosts,
                 new ToolStripSeparator(),
                 refreshDns
             });
-            menu.Items.AddRange(Helpers.MakeToolMenu(Settings.Default.tools.ToArray()));
-            menu.Items.AddRange(new ToolStripItem[]
+            trayIconMenu.Items.AddRange(Helpers.MakeToolMenu(Settings.Default.tools.ToArray()));
+            trayIconMenu.Items.AddRange(new ToolStripItem[]
             {
                 new ToolStripSeparator(),
                 about,

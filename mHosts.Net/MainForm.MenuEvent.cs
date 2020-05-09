@@ -51,6 +51,7 @@ namespace mHosts.Net
                         trayIcon.ShowBalloonTip(5000, "操作成功", "DNS缓存刷新成功", ToolTipIcon.Info);
                     }
 
+                    LogForm.Notice("DNS缓存刷新成功");
                     return RefreshDnsStatus.Success;
                 }
 
@@ -59,15 +60,18 @@ namespace mHosts.Net
                     trayIcon.ShowBalloonTip(5000, "操作失败", "DNS缓存刷新失败", ToolTipIcon.Error);
                 }
 
+                LogForm.Error("DNS缓存刷新成功: " + errorOutput);
+
                 return RefreshDnsStatus.Failed;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 if (showTip)
                 {
                     trayIcon.ShowBalloonTip(5000, "出现错误", "刷新DNS缓存时出错", ToolTipIcon.Error);
                 }
 
+                LogForm.Error("DNS缓存刷新成功: " + e.Message);
                 return RefreshDnsStatus.Error;
             }
         }
@@ -115,7 +119,7 @@ namespace mHosts.Net
         {
             var dialog = new AboutDialog
             {
-                Text = $@"关于 {_assemblyName.Name} - v{_assemblyName.Version}"
+                Text = string.Format(Resources.StrAboutSoftware, _assemblyName.Name, _assemblyName.Version)
             };
             dialog.ShowDialog(this);
         }
@@ -136,7 +140,7 @@ namespace mHosts.Net
             dialog.ShowDialog(this);
         }
 
-        private void OnFIleMenuExportClick(object sender, EventArgs e)
+        private void OnFileMenuExportClick(object sender, EventArgs e)
         {
             var result = exportHostDialog.ShowDialog(this);
             if (result != DialogResult.Yes && result != DialogResult.OK) return;

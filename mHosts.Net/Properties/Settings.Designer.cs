@@ -69,5 +69,17 @@ namespace mHosts.Net.Properties {
                 this["logLevel"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool allowMutiHosts {
+            get {
+                return ((bool)(this["allowMutiHosts"]));
+            }
+            set {
+                this["allowMutiHosts"] = value;
+            }
+        }
     }
 }

@@ -152,6 +152,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="server\ProxyServer.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="temp\Class1.cs" />
     <EmbeddedResource Include="AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -227,6 +228,8 @@
     <None Include="Resources\table.png" />
     <None Include="Resources\user.png" />
     <None Include="Resources\wechat.png" />
+    <None Include="Resources\about.txt" />
+    <Content Include="temp\about.html" />
     <Content Include="temp\hosts.xml" />
     <None Include="Resources\logo.ico" />
   </ItemGroup>

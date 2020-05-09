@@ -14,7 +14,7 @@ namespace mHosts.Net
 
             var assemblyName = Assembly.GetExecutingAssembly().GetName();
             webBrowser1.Document?.Write(string.Empty);
-            webBrowser1.DocumentText = string.Format(Resources.AboutHtml, assemblyName.Name, assemblyName.Version);
+            webBrowser1.DocumentText = string.Format(Resources.About, assemblyName.Name, assemblyName.Version);
         }
 
         private void OnNavigateToNewUrl(object sender, WebBrowserNavigatingEventArgs e)
@@ -24,6 +24,11 @@ namespace mHosts.Net
             {
                 Process.Start(e.Url.AbsoluteUri);
             }
+        }
+
+        private void OnAboutDialogLoad(object sender, EventArgs e)
+        {
+
         }
     }
 }

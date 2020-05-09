@@ -168,7 +168,7 @@ namespace mHosts.Net
             this.fileMenuItemExport.Name = "fileMenuItemExport";
             this.fileMenuItemExport.Size = new System.Drawing.Size(144, 26);
             this.fileMenuItemExport.Text = "导出(&E)";
-            this.fileMenuItemExport.Click += new System.EventHandler(this.OnFIleMenuExportClick);
+            this.fileMenuItemExport.Click += new System.EventHandler(this.OnFileMenuExportClick);
             // 
             // toolStripSeparator4
             // 

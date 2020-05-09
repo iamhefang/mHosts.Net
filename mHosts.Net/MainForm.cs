@@ -2,6 +2,7 @@ using mHosts.Net.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
@@ -24,7 +25,7 @@ namespace mHosts.Net
             InitializeComponent();
             exportHostDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             Program.InitSettings();
-            InitTrayMenu(trayIconMenu);
+            InitTrayMenu();
             InitToolMenu();
             Text = $@"{_assemblyName.Name} - v{_assemblyName.Version}";
 #if DEBUG
@@ -36,16 +37,25 @@ namespace mHosts.Net
         }
 
 
-        private bool ApplyHosts2System(Host host)
+        private bool ApplyHosts2System(Host host, bool refreshTree = true)
         {
             try
             {
-                var hostLines = Helpers.MergeHosts(host);
+                host.Active = !host.Active;
+                if (!Settings.Default.allowMutiHosts)
+                {
+                    foreach (var item in Settings.Default.hosts.Where(item => item.Id != host.Id && !item.AlwaysApply))
+                    {
+                        item.Active = false;
+                    }
+                }
+
+                var hostLines = Helpers.MergeHosts();
                 File.WriteAllText(Settings.Default.hostsPath, string.Join("\n", hostLines));
+                LogForm.Notice("Hosts应用成功");
                 var res = DoRefreshDns();
                 var msg = "Hosts已成功应用到系统";
-                host.Active = !host.Active;
-                InitHostsTree();
+                if (refreshTree) InitHostsTree();
                 switch (res)
                 {
                     case RefreshDnsStatus.Success:
@@ -66,11 +76,13 @@ namespace mHosts.Net
             }
             catch (Exception e)
             {
+                host.Active = !host.Active;
                 MessageBox.Show(
                     $@"写hosts文件时出错，错误信息：{e.Message}",
                     @"写文件时出错",
                     MessageBoxButtons.OK, MessageBoxIcon.Error
                 );
+                LogForm.Error($@"写hosts文件时出错，错误信息：{e.Message}");
                 return false;
             }
         }

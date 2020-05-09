@@ -1,4 +1,5 @@
-﻿using mHosts.Net.Properties;
+﻿using System.Drawing;
+using mHosts.Net.Properties;
 using System.Windows.Forms;
 using mHosts.Net.entities;
 
@@ -8,16 +9,21 @@ namespace mHosts.Net
     {
         private void OnTreeNodeSelect(object sender, TreeViewEventArgs e)
         {
-            codeEditor.ReadOnly = e.Node.Index == 0;
-            codeEditor.Text = e.Node.Index == 0
-                ? Helpers.ReadText(Settings.Default.hostsPath)
-                : Settings.Default.hosts[e.Node.Index - 1].Content;
+            codeEditor.ReadOnly = e.Node.Name == "system-hosts";
+            if (e.Node.Name == "system-hosts")
+            {
+                codeEditor.Text = Helpers.ReadText(Settings.Default.hostsPath);
+            }
+            else if (e.Node.Tag is Host host)
+            {
+                codeEditor.Text = host.Content;
+            }
         }
 
         private void OnHostDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            var node = (TreeView) sender;
-            if (node.Tag is Host host) ApplyHosts2System(host);
+            if (!(e.Node.Tag is Host host)) return;
+            ApplyHosts2System(host);
         }
     }
 }

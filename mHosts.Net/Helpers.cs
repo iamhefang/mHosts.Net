@@ -53,7 +53,7 @@ namespace mHosts.Net
             {"windows", Resources.windows}
         };
 
-        public static string[] MergeHosts(Host clickedHost)
+        public static string[] MergeHosts()
         {
             var ass = Assembly.GetExecutingAssembly().GetName();
 
@@ -62,7 +62,7 @@ namespace mHosts.Net
             {
                 $"# Hosts Apply by {ass.Name} v{ass.Version} {DateTime.Now}"
             };
-            foreach (var host in hosts.Where(host => host.Active || (host.Id == clickedHost.Id && !clickedHost.Active)))
+            foreach (var host in hosts.Where(host => host.AlwaysApply || host.Active))
             {
                 lines.Add($"\n#----------- {host.Name} -----------");
                 lines.AddRange(host.Content.Split('\n'));

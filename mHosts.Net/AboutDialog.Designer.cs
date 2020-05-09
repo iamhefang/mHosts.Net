@@ -41,7 +41,7 @@
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(598, 394);
+            this.webBrowser1.Size = new System.Drawing.Size(620, 411);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.TabStop = false;
             this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
@@ -52,7 +52,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(598, 394);
+            this.ClientSize = new System.Drawing.Size(620, 411);
             this.Controls.Add(this.webBrowser1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -62,6 +62,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "关于";
+            this.Load += new System.EventHandler(this.OnAboutDialogLoad);
             this.ResumeLayout(false);
 
         }

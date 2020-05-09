@@ -1,6 +1,7 @@
 ﻿using mHosts.Net.Properties;
 using System;
 using System.Windows.Forms;
+using mHosts.Net.entities;
 
 namespace mHosts.Net
 {
@@ -36,9 +37,10 @@ namespace mHosts.Net
         private void OnCodeChanged(object sender, EventArgs e)
         {
             Helpers.SetRichTextHighlight(codeEditor);
-            if (hostsTree.SelectedNode == null || hostsTree.SelectedNode.Index == 0) return;
-            var host = Settings.Default.hosts[hostsTree.SelectedNode.Index - 1];
-            host.Content = codeEditor.Text;
+            if (hostsTree.SelectedNode?.Tag is Host host)
+            {
+                host.Content = codeEditor.Text;
+            }
         }
 
         private void OnContextMenuItemUndoClick(object sender, EventArgs e)

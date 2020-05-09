@@ -1,326 +1,318 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <!-- 
-      Microsoft ResX Schema 
-      
-      Version 2.0
-      
-      The primary goals of this format is to allow a simple XML format 
-      that is mostly human readable. The generation and parsing of the 
-      various data types are done through the TypeConverter classes 
-      associated with the data types.
-      
-      Example:
-      
-      ... ado.net/XML headers & schema ...
-      <resheader name="resmimetype">text/microsoft-resx</resheader>
-      <resheader name="version">2.0</resheader>
-      <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-      <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-      <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-      <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-      <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-          <value>[base64 mime encoded serialized .NET Framework object]</value>
-      </data>
-      <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-          <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-          <comment>This is a comment</comment>
-      </data>
-                  
-      There are any number of "resheader" rows that contain simple 
-      name/value pairs.
-      
-      Each data row contains a name, and value. The row also contains a 
-      type or mimetype. Type corresponds to a .NET class that support 
-      text/value conversion through the TypeConverter architecture. 
-      Classes that don't support this are serialized and stored with the 
-      mimetype set.
-      
-      The mimetype is used for serialized objects, and tells the 
-      ResXResourceReader how to depersist the object. This is currently not 
-      extensible. For a given mimetype the value must be set accordingly:
-      
-      Note - application/x-microsoft.net.object.binary.base64 is the format 
-      that the ResXResourceWriter will generate, however the reader can 
-      read any of the formats listed below.
-      
-      mimetype: application/x-microsoft.net.object.binary.base64
-      value   : The object must be serialized with 
-              : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-              : and then encoded with base64 encoding.
-      
-      mimetype: application/x-microsoft.net.object.soap.base64
-      value   : The object must be serialized with 
-              : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-              : and then encoded with base64 encoding.
-  
-      mimetype: application/x-microsoft.net.object.bytearray.base64
-      value   : The object must be serialized into a byte array 
-              : using a System.ComponentModel.TypeConverter
-              : and then encoded with base64 encoding.
-      -->
-    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
-        <xsd:element name="root" msdata:IsDataSet="true">
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
             <xsd:complexType>
-                <xsd:choice maxOccurs="unbounded">
-                    <xsd:element name="metadata">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" use="required" type="xsd:string"/>
-                            <xsd:attribute name="type" type="xsd:string"/>
-                            <xsd:attribute name="mimetype" type="xsd:string"/>
-                            <xsd:attribute ref="xml:space"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="assembly">
-                        <xsd:complexType>
-                            <xsd:attribute name="alias" type="xsd:string"/>
-                            <xsd:attribute name="name" type="xsd:string"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="data">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-                            <xsd:attribute ref="xml:space"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="resheader">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                </xsd:choice>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
-        </xsd:element>
-    </xsd:schema>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>2.0</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        </value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        </value>
-    </resheader>
-    <data name="AboutHtml" xml:space="preserve">
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutHtml" xml:space="preserve">
     <value>&lt;!doctype html&gt;
 &lt;html lang="zh"&gt;
 &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"&gt;
-    &lt;meta http-equiv="X-UA-Compatible" content="ie=edge,ie=11,ie=10,ie=9"&gt;
-    &lt;title&gt;关于&lt;/title&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"&gt;
+	&lt;meta http-equiv="X-UA-Compatible" content="ie=edge,ie=11,ie=10,ie=9"&gt;
+	&lt;title&gt;关于&lt;/title&gt;
 &lt;/head&gt;
 &lt;body style="font-family: 'Microsoft YaHei',Arial, Helvetica, sans-serif;padding: 20px"&gt;
 &lt;h1&gt;{0} v{1}&lt;/h1&gt;
 &lt;h4&gt;免费好用的跨平台Hosts管理工具&lt;/h4&gt;
 &lt;table style="width:100%"&gt;
-&lt;tr&gt;
-    &lt;td style='text-align: right;'&gt;作者:&lt;/td&gt;
-    &lt;td&gt;&lt;a href="https://hefang.link/?from={0} v{1}" title="点击访问何方博客"&gt;何方&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-    &lt;td style='text-align: right;'&gt;项目地址:&lt;/td&gt;
-    &lt;td&gt;
-        &lt;a href="https://github.com/iamhefang/mHosts.Net"&gt;https://github.com/iamhefang/mHosts.Net&lt;/a&gt;
-    &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-    &lt;td style='text-align: right;'&gt;问题和建议:&lt;/td&gt;
-    &lt;td&gt;
-        &lt;a href="https://github.com/iamhefang/mHosts.Net/issues"&gt;Issues&lt;/a&gt;
-    &lt;/td&gt;
-&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td style='text-align: right;padding: 5px;'&gt;作者:&lt;/td&gt;
+		&lt;td style="padding: 5px"&gt;
+			&lt;a href="https://hefang.link/?from={0} v{1}" title="点击访问何方博客"&gt;何方&lt;/a&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td style='text-align: right;padding: 5px'&gt;项目地址:&lt;/td&gt;
+		&lt;td style="padding: 5px"&gt;
+			&lt;a href="https://github.com/iamhefang/mHosts.Net"&gt;https://github.com/iamhefang/mHosts.Net&lt;/a&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td style='text-align: right;padding: 5px'&gt;问题和建议:&lt;/td&gt;
+		&lt;td style="padding: 5px"&gt;
+			&lt;a href="https://github.com/iamhefang/mHosts.Net/issues"&gt;Issues&lt;/a&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td style="padding: 5px"&gt;&lt;/td&gt;
+		&lt;td style="padding: 5px"&gt;
+			&lt;img src="https://img.shields.io/github/stars/iamhefang/mHosts.Net.svg" alt=""/&gt;
+			&lt;img src="https://img.shields.io/github/forks/iamhefang/mHosts.Net.svg" alt=""/&gt;
+			&lt;img src="https://img.shields.io/github/issues/iamhefang/mHosts.Net.svg" alt=""/&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
 &lt;/table&gt;
 &lt;/body&gt;
 &lt;/html&gt;</value>
   </data>
-    <assembly alias="System.Windows.Forms"
-              name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
-    <data name="aliyun" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\aliyun.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="chrome" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\chrome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="darwin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\darwin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="database" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\database.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="edge" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\edge.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="firefox" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\firefox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="java" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\java.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="linux" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\linux.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="mysql" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\mysql.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="postgresql" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\postgresql.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="python" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\python.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="qq" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\qq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="server" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\server.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="SingleInstanceKey" xml:space="preserve">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="aliyun" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\aliyun.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="chrome" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chrome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="darwin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\darwin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="database" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\database.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edge" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edge.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="firefox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\firefox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="java" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\java.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="linux" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\linux.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mysql" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mysql.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="postgresql" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\postgresql.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="python" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\python.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="qq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\qq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="server" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\server.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SingleInstanceKey" xml:space="preserve">
     <value>HeFang.mHost.Net.Release</value>
   </data>
-    <data name="DebugSingleInstanceKey" xml:space="preserve">
+  <data name="DebugSingleInstanceKey" xml:space="preserve">
     <value>HeFang.mHost.Net.Debug</value>
   </data>
-    <data name="table" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\table.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="wechat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\wechat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-        <value>..\Resources\win32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a
-        </value>
-    </data>
-    <data name="StrDoubleClick" xml:space="preserve">
+  <data name="table" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\table.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wechat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wechat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\win32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StrDoubleClick" xml:space="preserve">
     <value>双击</value>
   </data>
-    <data name="StrSet2Current" xml:space="preserve">
+  <data name="StrSet2Current" xml:space="preserve">
     <value>设置为当前</value>
   </data>
-    <data name="StrEdit" xml:space="preserve">
+  <data name="StrEdit" xml:space="preserve">
     <value>编辑</value>
   </data>
-    <data name="StrDelete" xml:space="preserve">
+  <data name="StrDelete" xml:space="preserve">
     <value>删除</value>
   </data>
-    <data name="StrExport" xml:space="preserve">
+  <data name="StrExport" xml:space="preserve">
     <value>导出</value>
   </data>
-    <data name="StrCurrentSystem" xml:space="preserve">
+  <data name="StrCurrentSystem" xml:space="preserve">
     <value>系统当前</value>
   </data>
-    <data name="StrHostsCount" xml:space="preserve">
+  <data name="StrHostsCount" xml:space="preserve">
     <value>当前共有{0}个规则</value>
   </data>
-    <data name="StrToggleMainForm" xml:space="preserve">
+  <data name="StrToggleMainForm" xml:space="preserve">
     <value>显示/隐藏主窗口</value>
   </data>
-    <data name="StrServiceIsBound" xml:space="preserve">
+  <data name="StrServiceIsBound" xml:space="preserve">
     <value>服务已启动</value>
   </data>
-    <data name="StrServiceNotBound" xml:space="preserve">
+  <data name="StrServiceNotBound" xml:space="preserve">
     <value>服务未启动</value>
   </data>
-    <data name="StrNewHosts" xml:space="preserve">
+  <data name="StrNewHosts" xml:space="preserve">
     <value>新建Hosts</value>
   </data>
-    <data name="StrRefreshDNS" xml:space="preserve">
+  <data name="StrRefreshDNS" xml:space="preserve">
     <value>刷新DNS缓存</value>
   </data>
-    <data name="StrAbout" xml:space="preserve">
+  <data name="StrAbout" xml:space="preserve">
     <value>关于</value>
   </data>
-    <data name="StrExit" xml:space="preserve">
+  <data name="StrAboutSoftware" xml:space="preserve">
+    <value>关于 {0} - v{1}</value>
+  </data>
+  <data name="StrExit" xml:space="preserve">
     <value>退出</value>
   </data>
-    <data name="StrAddNewTool" xml:space="preserve">
+  <data name="StrAddNewTool" xml:space="preserve">
     <value>添加新工具(&amp;A)</value>
   </data>
-    <data name="StrCommon" xml:space="preserve">
+  <data name="StrCommon" xml:space="preserve">
     <value>公共</value>
   </data>
-    <data name="StrCustom" xml:space="preserve">
+  <data name="StrCustom" xml:space="preserve">
     <value>自定义</value>
   </data>
-    <data name="StrExportFileError" xml:space="preserve">
+  <data name="StrExportFileError" xml:space="preserve">
     <value>导出文件出错</value>
   </data>
-    <data name="StrExportSuccess" xml:space="preserve">
+  <data name="StrExportSuccess" xml:space="preserve">
     <value>文件导出成功</value>
   </data>
-    <data name="StrExportFileAt" xml:space="preserve">
+  <data name="StrExportFileAt" xml:space="preserve">
     <value>文件已保存到{0}</value>
   </data>
-    <data name="StrImportFileError" xml:space="preserve">
+  <data name="StrImportFileError" xml:space="preserve">
     <value>导入文件出错</value>
   </data>
-    <data name="StrPleaseCheckTheFileIsMHostExported" xml:space="preserve">
+  <data name="StrPleaseCheckTheFileIsMHostExported" xml:space="preserve">
     <value>请检查导入的文件是否是mHosts导出的文件</value>
   </data>
-    <data name="StrImportSuccess" xml:space="preserve">
-    <value>StrImportSuccess</value>
+  <data name="StrImportSuccess" xml:space="preserve">
+    <value>导入成功</value>
+  </data>
+  <data name="About" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\about.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
