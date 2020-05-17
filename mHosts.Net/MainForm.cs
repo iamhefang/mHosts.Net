@@ -21,7 +21,7 @@ namespace mHosts.Net
 
         public MainForm()
         {
-            Server.OnStart();
+            Server.Start();
             InitializeComponent();
             exportHostDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             Program.InitSettings();
@@ -52,7 +52,7 @@ namespace mHosts.Net
 
                 var hostLines = Helpers.MergeHosts();
                 File.WriteAllText(Settings.Default.hostsPath, string.Join("\n", hostLines));
-                LogForm.Notice("Hosts应用成功");
+                Logger.Notice("Hosts应用成功");
                 var res = DoRefreshDns();
                 var msg = "Hosts已成功应用到系统";
                 if (refreshTree) InitHostsTree();
@@ -82,7 +82,7 @@ namespace mHosts.Net
                     @"写文件时出错",
                     MessageBoxButtons.OK, MessageBoxIcon.Error
                 );
-                LogForm.Error($@"写hosts文件时出错，错误信息：{e.Message}");
+                Logger.Error($@"写hosts文件时出错，错误信息：{e.Message}");
                 return false;
             }
         }
@@ -158,7 +158,7 @@ namespace mHosts.Net
 
         private void OnMenuItemLogClick(object sender, EventArgs e)
         {
-            LogForm.ShowForm();
+            Logger.ShowForm();
         }
     }
 }

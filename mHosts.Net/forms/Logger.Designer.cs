@@ -1,6 +1,6 @@
 ﻿namespace mHosts.Net.forms
 {
-    partial class LogForm
+    partial class Logger
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Logger));
             this.logTextarea = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -54,7 +54,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.logTextarea);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "LogForm";
+            this.Name = "Logger";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "日志";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnLogFormClosed);

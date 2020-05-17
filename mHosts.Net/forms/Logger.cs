@@ -20,29 +20,28 @@ namespace mHosts.Net.forms
         DEBUG
     }
 
-    public partial class LogForm : Form
+    public partial class Logger : Form
     {
         private static string _log;
-        private static LogForm _form;
+        private static Logger _form;
 
-        private LogForm()
+        private Logger()
         {
             InitializeComponent();
         }
 
         public static void ShowForm()
         {
-            _form ??= new LogForm();
+            _form ??= new Logger();
             _form.Show();
         }
 
-        public static void Log(string log, LogLevel level)
+        public static void Log(string log, LogLevel level = LogLevel.LOG)
         {
             _log += $"[{DateTime.Now}]({level}) {log}{Environment.NewLine}";
-            if (_form != null)
-            {
-                _form.logTextarea.Text = _log;
-            }
+            if (_form == null) return;
+            _form.logTextarea.Text = _log;
+            _form.logTextarea.SelectionLength = 0;
         }
 
         public static void Error(string log)
@@ -70,6 +69,7 @@ namespace mHosts.Net.forms
         private void OnLogFormLoad(object sender, EventArgs e)
         {
             logTextarea.Text = _log;
+            logTextarea.SelectionLength = 0;
         }
 
         private void OnLogFormClosed(object sender, FormClosedEventArgs e)

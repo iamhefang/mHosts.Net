@@ -15,6 +15,10 @@ namespace mHosts.Net
         private void ToggleVisible()
         {
             Visible = !Visible;
+            if (Visible)
+            {
+                
+            }
         }
 
         private void OnMenuItemConfigClick(object sender, EventArgs e)
@@ -51,7 +55,7 @@ namespace mHosts.Net
                         trayIcon.ShowBalloonTip(5000, "操作成功", "DNS缓存刷新成功", ToolTipIcon.Info);
                     }
 
-                    LogForm.Notice("DNS缓存刷新成功");
+                    Logger.Notice("DNS缓存刷新成功");
                     return RefreshDnsStatus.Success;
                 }
 
@@ -60,7 +64,7 @@ namespace mHosts.Net
                     trayIcon.ShowBalloonTip(5000, "操作失败", "DNS缓存刷新失败", ToolTipIcon.Error);
                 }
 
-                LogForm.Error("DNS缓存刷新成功: " + errorOutput);
+                Logger.Error("DNS缓存刷新成功: " + errorOutput);
 
                 return RefreshDnsStatus.Failed;
             }
@@ -71,7 +75,7 @@ namespace mHosts.Net
                     trayIcon.ShowBalloonTip(5000, "出现错误", "刷新DNS缓存时出错", ToolTipIcon.Error);
                 }
 
-                LogForm.Error("DNS缓存刷新成功: " + e.Message);
+                Logger.Error("DNS缓存刷新成功: " + e.Message);
                 return RefreshDnsStatus.Error;
             }
         }
@@ -158,7 +162,7 @@ namespace mHosts.Net
             }
             catch (Exception exception)
             {
-                LogForm.Error("导出文件出现错误:" + exception.Message);
+                Logger.Error("导出文件出现错误:" + exception.Message);
                 MessageBox.Show(
                     exception.Message,
                     Resources.StrExportFileError,

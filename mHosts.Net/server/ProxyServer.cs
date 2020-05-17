@@ -17,7 +17,7 @@ namespace mHosts.Net.server
 
         public ProxyServer(int port)
         {
-            this.Port = port;
+            Port = port;
             _initSocket();
         }
 
@@ -31,7 +31,7 @@ namespace mHosts.Net.server
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }
 
-        public void OnStart()
+        public void Start()
         {
             if (_socket.IsBound)
             {
@@ -41,7 +41,7 @@ namespace mHosts.Net.server
             var point = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Port);
             _socket.Bind(point);
             _socket.Listen(20);
-            LogForm.Notice($"服务已启动：127.0.0.1:{Port}");
+            Logger.Notice($"服务已启动：127.0.0.1:{Port}");
             var thread = new Thread(OnListen) {IsBackground = true};
             thread.Start(_socket);
         }
@@ -59,14 +59,14 @@ namespace mHosts.Net.server
         private void OnAccept(object socket)
         {
             var client = (Socket) socket;
-            LogForm.Notice($"收到请求:{client}");
+            Logger.Notice($"收到请求:{client}");
 
             var buffer = new byte[4096];
             int count;
             while ((count = client.Receive(buffer)) > 0)
             {
                 var str = Encoding.UTF8.GetString(buffer, 0, count);
-                LogForm.Notice($"收到消息:{str}");
+                Logger.Notice($"收到消息:{str}");
             }
 
             client.Send(Encoding.UTF8.GetBytes("Hello From Server"));

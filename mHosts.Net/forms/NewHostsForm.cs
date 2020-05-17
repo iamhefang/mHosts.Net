@@ -21,25 +21,46 @@ namespace mHosts.Net.forms
         {
             if (string.IsNullOrWhiteSpace(inputHostsName.Text))
             {
-                MessageBox.Show(@"Hosts名称不能为空", @"保存失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    Resources.StrHostsNameCanNotEmpty,
+                    Resources.StrSaveFailed,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
                 return;
             }
 
             if (radioOnlineHosts.Checked && string.IsNullOrWhiteSpace(inputHostsUrl.Text))
             {
-                MessageBox.Show(@"请输入在线Hosts地址", @"保存失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    Resources.StrPleaseInputOnlineHostUrl,
+                    Resources.StrSaveFailed,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
                 return;
             }
 
             if (Settings.Default.hosts.FindIndex(item => item.Name == inputHostsName.Text) > -1)
             {
-                MessageBox.Show($@"Hosts名称'{inputHostsName.Text}'已存在", @"保存失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    string.Format(Resources.StrHostsNameExist, inputHostsName.Text),
+                    Resources.StrSaveFailed,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
                 return;
             }
 
-            if (radioOnlineHosts.Checked && Settings.Default.hosts.FindIndex(item => item.Url == inputHostsUrl.Text) > -1)
+            if (radioOnlineHosts.Checked &&
+                Settings.Default.hosts.FindIndex(item => item.Url == inputHostsUrl.Text) > -1)
             {
-                MessageBox.Show($@"在线Hosts地址'{inputHostsUrl.Text}'已存在", @"保存失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    string.Format(Resources.StrHostsUrlExist, inputHostsUrl.Text),
+                    Resources.StrSaveFailed,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
                 return;
             }
 
@@ -54,7 +75,6 @@ namespace mHosts.Net.forms
             };
             Settings.Default.hosts.Add(host);
             Settings.Default.Save();
-            Console.WriteLine(Settings.Default.hosts.Count);
             Close();
         }
     }
